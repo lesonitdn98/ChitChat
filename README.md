@@ -1,5 +1,7 @@
 # ChitChat
 
+**ChitChat is a chat realtime acpplication**
+
 **Author:** Son Le
 
 **Start Day:** 31/08/2020
