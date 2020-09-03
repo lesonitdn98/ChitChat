@@ -1,6 +1,8 @@
 package me.lesonnnn.chitchat.ui.main
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
 import kotlinx.android.synthetic.main.activity_main.*
@@ -47,5 +49,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     private fun setUp() {
         btn_set_text.setOnClickListener { mMainViewModel?.setText(edt_set_text.text.toString()) }
+        sw_dark_mode.isChecked =
+            AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+        sw_dark_mode.setOnCheckedChangeListener { _, p1 ->
+            if (p1) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            restartApp()
+        }
+    }
+
+    private fun restartApp() {
+        startActivity(Intent(applicationContext, MainActivity::class.java))
+        finish()
     }
 }

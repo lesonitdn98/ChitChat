@@ -8,10 +8,12 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import dagger.android.AndroidInjection
+import me.lesonnnn.chitchat.R
 import me.lesonnnn.chitchat.utils.NetworkUtils
 
 abstract class BaseActivity<T : ViewDataBinding, V : ViewModel> : AppCompatActivity() {
@@ -28,8 +30,17 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModel> : AppCompatActiv
 
     override fun onCreate(savedInstanceState: Bundle?) {
         performDependencyInjection()
+        setTheme()
         super.onCreate(savedInstanceState)
         performDataBinding()
+    }
+
+    private fun setTheme() {
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.DarkTheme)
+        } else {
+            setTheme(R.style.AppTheme)
+        }
     }
 
     open fun getViewDataBinding(): T? {
