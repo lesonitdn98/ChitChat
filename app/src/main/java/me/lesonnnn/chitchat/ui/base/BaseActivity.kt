@@ -11,12 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
 import dagger.android.AndroidInjection
 import me.lesonnnn.chitchat.R
+import me.lesonnnn.chitchat.ui.base.BaseFragment.Callback
 import me.lesonnnn.chitchat.utils.NetworkUtils
 
-abstract class BaseActivity<T : ViewDataBinding, V : ViewModel> : AppCompatActivity() {
+abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<Any>> : AppCompatActivity(), Callback{
 
     private var mViewDataBinding: T? = null
     private var mViewModel: V? = null
@@ -41,6 +41,14 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModel> : AppCompatActiv
         } else {
             setTheme(R.style.AppTheme)
         }
+    }
+
+    override fun onFragmentAttached() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onFragmentDetached(tag: String?) {
+        TODO("Not yet implemented")
     }
 
     open fun getViewDataBinding(): T? {
@@ -75,5 +83,13 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModel> : AppCompatActiv
         mViewDataBinding?.setVariable(getBindingVariable(), mViewModel)
         mViewDataBinding?.lifecycleOwner = this
         mViewDataBinding?.executePendingBindings()
+    }
+
+    fun showLoading() {
+        TODO("Not yet implemented")
+    }
+
+    fun hideLoading() {
+        TODO("Not yet implemented")
     }
 }
