@@ -8,39 +8,33 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dagger.android.AndroidInjection
-import me.lesonnnn.chitchat.R
+import me.lesonnnn.chitchat.data.local.prefs.PreferencesHelper
 import me.lesonnnn.chitchat.ui.base.BaseFragment.Callback
 import me.lesonnnn.chitchat.utils.NetworkUtils
+import javax.inject.Inject
 
-abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<Any>> : AppCompatActivity(), Callback{
+abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppCompatActivity(),
+    Callback {
 
     private var mViewDataBinding: T? = null
     private var mViewModel: V? = null
+    var preferencesHelper: PreferencesHelper? = null
+        @Inject set
 
     abstract fun getBindingVariable(): Int
 
     @LayoutRes
     abstract fun getLayout(): Int
 
-    abstract fun getViewModel(): V
+    abstract fun getViewModel(): V?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         performDependencyInjection()
-        setTheme()
         super.onCreate(savedInstanceState)
         performDataBinding()
-    }
-
-    private fun setTheme() {
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
-            setTheme(R.style.DarkTheme)
-        } else {
-            setTheme(R.style.AppTheme)
-        }
     }
 
     override fun onFragmentAttached() {
