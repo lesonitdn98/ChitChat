@@ -12,11 +12,11 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 
 abstract class BaseDialog : DialogFragment() {
-    private var mActivity: BaseActivity<*, *>? = null
+    private var mActivity: BaseActivity<*, *, *>? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is BaseActivity<*, *>) {
-            val mActivity: BaseActivity<*, *> = context
+        if (context is BaseActivity<*, *, *>) {
+            val mActivity: BaseActivity<*, *, *> = context
             this.mActivity = mActivity
             mActivity.onFragmentAttached()
         }
@@ -65,7 +65,7 @@ abstract class BaseDialog : DialogFragment() {
         baseActivity?.onFragmentDetached(tag)
     }
 
-    private val baseActivity: BaseActivity<*, *>?
+    private val baseActivity: BaseActivity<*, *, *>?
         get() = mActivity
 
     fun hideKeyboard() {

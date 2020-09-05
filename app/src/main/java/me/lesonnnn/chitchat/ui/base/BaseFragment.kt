@@ -12,11 +12,10 @@ import androidx.fragment.app.Fragment
 import dagger.android.support.AndroidSupportInjection
 
 @Suppress("UNCHECKED_CAST")
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<Any>> : Fragment() {
-    private var mActivity: BaseActivity<T, V>? = null
+abstract class BaseFragment<T : ViewDataBinding, N, V : BaseViewModel<N>> : Fragment() {
+    private var mActivity: BaseActivity<T, N, V>? = null
     private var mRootView: View? = null
-    var viewDataBinding: T? = null
-        private set
+    private var viewDataBinding: T? = null
     private var mViewModel: V? = null
 
     abstract val bindingVariable: Int
@@ -28,8 +27,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<Any>> : Fragm
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is BaseActivity<*, *>) {
-            val activity: BaseActivity<T, V> = context as BaseActivity<T, V>
+        if (context is BaseActivity<*, *, *>) {
+            val activity: BaseActivity<T, N, V> = context as BaseActivity<T, N, V>
             mActivity = activity
             activity.onFragmentAttached()
         }
@@ -64,7 +63,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<Any>> : Fragm
         viewDataBinding!!.executePendingBindings()
     }
 
-    val baseActivity: BaseActivity<T, V>?
+    val baseActivity: BaseActivity<T, N, V>?
         get() = mActivity
 
     fun hideKeyboard() {

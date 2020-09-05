@@ -1,25 +1,21 @@
 <resources>
-    <!-- Light/Day mode theme. -->
+    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">@color/backgroundLight</item>
-        <item name="android:windowAnimationStyle">@style/windowAnimationTransition</item>
+        <item name="android:windowBackground">@drawable/bg_splashscreen</item>
+<!--        <item name="android:windowAnimationStyle">@style/windowAnimationTransition</item>-->
     </style>
 
-    <!-- Dark/Night mode theme. -->
-    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundColor">@color/backgroundDark</item>
-        <item name="android:windowAnimationStyle">@style/windowAnimationTransition</item>
-    </style>
+<!--    <style name="windowAnimationTransition">-->
+<!--        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>-->
+<!--        <item name="android:windowExitAnimation">@android:anim/fade_out</item>-->
+<!--    </style>-->
 
-    <style name="windowAnimationTransition">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    <!-- Splash Screen theme. -->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splashscreen</item>
     </style>
 
 </resources>

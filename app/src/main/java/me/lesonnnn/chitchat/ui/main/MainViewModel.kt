@@ -5,9 +5,9 @@ import me.lesonnnn.chitchat.data.DataManager
 import me.lesonnnn.chitchat.ui.base.BaseViewModel
 import me.lesonnnn.chitchat.utils.rx.SchedulerProvider
 
-class MainViewModel constructor(dataManager: DataManager,
+class MainViewModel<N> constructor(dataManager: DataManager,
                     schedulerProvider: SchedulerProvider
-) : BaseViewModel<MainNavigator>(dataManager, schedulerProvider) {
+) : BaseViewModel<N>(dataManager, schedulerProvider) {
 
     private var text: MutableLiveData<String> = MutableLiveData()
 

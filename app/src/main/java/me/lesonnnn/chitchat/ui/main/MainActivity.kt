@@ -1,11 +1,10 @@
 package me.lesonnnn.chitchat.ui.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
-import kotlinx.android.synthetic.main.activity_main.*
 import me.lesonnnn.chitchat.BR
 import me.lesonnnn.chitchat.R
 import me.lesonnnn.chitchat.ViewModelProviderFactory
@@ -13,7 +12,18 @@ import me.lesonnnn.chitchat.databinding.ActivityMainBinding
 import me.lesonnnn.chitchat.ui.base.BaseActivity
 import javax.inject.Inject
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNavigator {
+class MainActivity :
+    BaseActivity<ActivityMainBinding, MainNavigator, MainViewModel<MainNavigator>>(),
+    MainNavigator {
+
+    companion object {
+        private var instance: Intent? = null
+
+        @JvmStatic
+        fun getIntent(context: Context) = instance ?: synchronized(this) {
+            instance ?: Intent(context, MainActivity::class.java).also { instance = it }
+        }
+    }
 
     var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>? = null
         @Inject set
@@ -21,7 +31,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         @Inject set
 
     private var mActivityMainBinding: ActivityMainBinding? = null
-    private var mMainViewModel: MainViewModel? = null
+    private var mMainViewModel: MainViewModel<MainNavigator>? = null
 
     override fun getBindingVariable(): Int {
         return BR.viewModel
@@ -38,8 +48,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         setUp()
     }
 
-    override fun getViewModel(): MainViewModel {
-        mMainViewModel = factory?.let { ViewModelProvider(this, it).get(MainViewModel::class.java) }
+    override fun getViewModel(): MainViewModel<MainNavigator> {
+        mMainViewModel = factory?.let {
+            ViewModelProvider(
+                this,
+                it
+            ).get(MainViewModel::class.java)
+        } as MainViewModel<MainNavigator>
         return mMainViewModel as MainViewModel
     }
 
@@ -48,18 +63,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     }
 
     private fun setUp() {
-        btn_set_text.setOnClickListener { mMainViewModel?.setText(edt_set_text.text.toString()) }
-        sw_dark_mode.isChecked =
-            AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
-        sw_dark_mode.setOnCheckedChangeListener { _, p1 ->
-            if (p1) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            restartApp()
-        }
-    }
-
-    private fun restartApp() {
-        startActivity(Intent(applicationContext, MainActivity::class.java))
-        finish()
     }
 }
