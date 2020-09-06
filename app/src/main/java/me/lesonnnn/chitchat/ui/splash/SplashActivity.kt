@@ -7,6 +7,7 @@ import me.lesonnnn.chitchat.BR
 import me.lesonnnn.chitchat.R
 import me.lesonnnn.chitchat.ViewModelProviderFactory
 import me.lesonnnn.chitchat.databinding.ActivitySplashBinding
+import me.lesonnnn.chitchat.ui.TestActivity
 import me.lesonnnn.chitchat.ui.base.BaseActivity
 import me.lesonnnn.chitchat.ui.main.MainActivity
 import javax.inject.Inject
@@ -46,7 +47,7 @@ class SplashActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(MainActivity.getIntent(this))
+        startActivity(TestActivity.getIntent(this))
         finish()
     }
 
