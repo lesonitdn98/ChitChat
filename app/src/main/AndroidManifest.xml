@@ -25,6 +25,9 @@
         <activity android:name=".ui.main.MainActivity"
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.TestActivity" >
+
+        </activity>
     </application>
 
 </manifest>

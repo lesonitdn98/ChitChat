@@ -11,18 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dagger.android.AndroidInjection
-import me.lesonnnn.chitchat.data.local.prefs.PreferencesHelper
 import me.lesonnnn.chitchat.ui.base.BaseFragment.Callback
 import me.lesonnnn.chitchat.utils.NetworkUtils
-import javax.inject.Inject
 
 abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppCompatActivity(),
     Callback {
 
     private var mViewDataBinding: T? = null
     private var mViewModel: V? = null
-    var preferencesHelper: PreferencesHelper? = null
-        @Inject set
 
     abstract fun getBindingVariable(): Int
 
