@@ -19,8 +19,19 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">0dp</item>
         <item name="cornerSizeTopLeft">0dp</item>
-        <item name="cornerSizeBottomRight">@dimen/_36sdp</item>
-        <item name="cornerSizeBottomLeft">@dimen/_36sdp</item>
+        <item name="cornerSizeBottomRight">@dimen/_30sdp</item>
+        <item name="cornerSizeBottomLeft">@dimen/_30sdp</item>
+    </style>
+
+    <style name="CustomCardViewStyleMain" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_corners</item>
+    </style>
+    <style name="ShapeAppearanceOverlay_card_custom_cornersMain" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">@dimen/_20sdp</item>
+        <item name="cornerSizeBottomLeft">@dimen/_20sdp</item>
     </style>
 
 </resources>
