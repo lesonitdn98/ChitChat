@@ -3,10 +3,8 @@ package me.lesonnnn.chitchat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import me.lesonnnn.chitchat.data.DataManager
-import me.lesonnnn.chitchat.ui.main.MainNavigator
 import me.lesonnnn.chitchat.ui.main.MainViewModel
-import me.lesonnnn.chitchat.ui.splash.SplashActivity
-import me.lesonnnn.chitchat.ui.splash.SplashNavigator
+import me.lesonnnn.chitchat.ui.main.home.HomeViewModel
 import me.lesonnnn.chitchat.ui.splash.SplashViewModel
 import me.lesonnnn.chitchat.utils.rx.SchedulerProvider
 import javax.inject.Inject
@@ -23,11 +21,17 @@ class ViewModelProviderFactory @Inject constructor(
     private val mSchedulerProvider: SchedulerProvider = schedulerProvider
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SplashViewModel::class.java)) {
-            return SplashViewModel<SplashNavigator>(mDataManager, mSchedulerProvider) as T
-        } else if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel<MainNavigator>(mDataManager, mSchedulerProvider) as T
+        return when {
+            modelClass.isAssignableFrom(SplashViewModel::class.java) -> {
+                SplashViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
+                MainViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
-        throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 }

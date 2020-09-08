@@ -11,7 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.activity_main.*
 import me.lesonnnn.chitchat.ui.base.BaseFragment.Callback
+import me.lesonnnn.chitchat.ui.main.MainActivity
 import me.lesonnnn.chitchat.utils.NetworkUtils
 
 abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppCompatActivity(),
@@ -20,17 +22,20 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
     private var mViewDataBinding: T? = null
     private var mViewModel: V? = null
 
-    abstract fun getBindingVariable(): Int
+    abstract val bindingVariable: Int
 
-    @LayoutRes
-    abstract fun getLayout(): Int
+    @get:LayoutRes
+    abstract val layoutId: Int
 
-    abstract fun getViewModel(): V?
+    abstract val viewModel: V?
+
+    abstract fun init()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         performDependencyInjection()
         super.onCreate(savedInstanceState)
         performDataBinding()
+        init()
     }
 
     override fun onFragmentAttached() {
@@ -68,9 +73,9 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
     }
 
     private fun performDataBinding() {
-        mViewDataBinding = DataBindingUtil.setContentView(this, getLayout())
-        mViewModel = if (mViewModel == null) getViewModel() else mViewModel
-        mViewDataBinding?.setVariable(getBindingVariable(), mViewModel)
+        mViewDataBinding = DataBindingUtil.setContentView(this, layoutId)
+        mViewModel = if (mViewModel == null) viewModel else mViewModel
+        mViewDataBinding?.setVariable(bindingVariable, mViewModel)
         mViewDataBinding?.lifecycleOwner = this
         mViewDataBinding?.executePendingBindings()
     }

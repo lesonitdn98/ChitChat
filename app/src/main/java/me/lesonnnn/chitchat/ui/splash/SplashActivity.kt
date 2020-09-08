@@ -7,39 +7,32 @@ import me.lesonnnn.chitchat.BR
 import me.lesonnnn.chitchat.R
 import me.lesonnnn.chitchat.ViewModelProviderFactory
 import me.lesonnnn.chitchat.databinding.ActivitySplashBinding
-import me.lesonnnn.chitchat.ui.TestActivity
 import me.lesonnnn.chitchat.ui.base.BaseActivity
 import me.lesonnnn.chitchat.ui.main.MainActivity
 import javax.inject.Inject
 
 class SplashActivity :
-    BaseActivity<ActivitySplashBinding, SplashNavigator, SplashViewModel<SplashNavigator>>(),
+    BaseActivity<ActivitySplashBinding, SplashNavigator, SplashViewModel>(),
     SplashNavigator {
 
-    var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>? = null
-        @Inject set
-    var factory: ViewModelProviderFactory? = null
-        @Inject set
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+    @Inject
+    lateinit var factory: ViewModelProviderFactory
 
-    private var mSplashViewModel: SplashViewModel<SplashNavigator>? = null
+    private var mSplashViewModel: SplashViewModel? = null
 
-    override fun getBindingVariable(): Int {
-        return BR.viewModel
-    }
-
-    override fun getLayout(): Int {
-        return R.layout.activity_splash
-    }
-
-    override fun getViewModel(): SplashViewModel<SplashNavigator>? {
-        mSplashViewModel = factory?.let {
+    override val bindingVariable: Int
+        get() = BR.viewModel
+    override val layoutId: Int
+        get() = R.layout.activity_splash
+    override val viewModel: SplashViewModel?
+        get() = factory.let {
             ViewModelProvider(
                 this,
                 it
             ).get(SplashViewModel::class.java)
-        } as SplashViewModel<SplashNavigator>
-        return mSplashViewModel
-    }
+        }
 
     override fun handleError(throwable: Throwable?) {
         //
@@ -47,8 +40,10 @@ class SplashActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(TestActivity.getIntent(this))
+        startActivity(MainActivity.getIntent(this))
         finish()
     }
+
+    override fun init() {}
 
 }

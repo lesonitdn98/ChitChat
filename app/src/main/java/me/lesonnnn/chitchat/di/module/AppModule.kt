@@ -2,7 +2,6 @@ package me.lesonnnn.chitchat.di.module
 
 import android.app.Application
 import android.content.Context
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -17,25 +16,16 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideContext(application: Application): Context {
-        return application
-    }
+    fun provideContext(application: Application): Context = application
 
     @Provides
     @Singleton
-    fun provideDataManager(appDataManager: AppDataManager): DataManager {
-        return appDataManager
-    }
+    fun provideDataManager(appDataManager: AppDataManager): DataManager = appDataManager
 
     @Provides
     @Singleton
-    fun provideGson(): Gson {
-        return GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
-    }
+    fun provideGson() = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
 
     @Provides
-    fun provideSchedulerProvider(): SchedulerProvider {
-        return AppSchedulerProvider()
-    }
-
+    fun provideSchedulerProvider(): SchedulerProvider = AppSchedulerProvider()
 }

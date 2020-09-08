@@ -1,12 +1,15 @@
-package me.lesonnnn.chitchat.ui.splash
+package me.lesonnnn.chitchat.ui.main.home
 
 import me.lesonnnn.chitchat.data.DataManager
 import me.lesonnnn.chitchat.ui.base.BaseViewModel
 import me.lesonnnn.chitchat.utils.rx.SchedulerProvider
 
-class SplashViewModel constructor(
+class HomeViewModel constructor(
     dataManager: DataManager,
     schedulerProvider: SchedulerProvider
-) : BaseViewModel<SplashNavigator>(dataManager, schedulerProvider) {
+) : BaseViewModel<HomeNavigator>(
+    dataManager,
+    schedulerProvider
+) {
 
 }
