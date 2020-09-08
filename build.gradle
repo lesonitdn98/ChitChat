@@ -10,7 +10,8 @@ buildscript {
     constraintLayoutVersion = '2.0.1'
     recyclerViewVersion = '1.2.0-alpha05'
     cardViewVersion = '1.0.0'
-    materialVersion = '1.2.0'
+    materialVersion = '1.2.1'
+    viewPage2Version = '1.1.0-alpha01'
 
     // App dependencies
     supportLibraryVersion = '1.2.0'

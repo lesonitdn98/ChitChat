@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 class ChitChatApp : Application(), HasAndroidInjector {
 
-    var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>? = null
-        @Inject set
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     override fun androidInjector(): AndroidInjector<Any?>? {
         return dispatchingAndroidInjector
