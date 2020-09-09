@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="me.lesonnnn.chitchat.ui.main.home.HomeViewModel" />
+            type="me.lesonnnn.chitchat.ui.main.contact.ContactViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -15,11 +15,10 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvListChat"
+            android:id="@+id/rvListContact"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </androidx.core.widget.NestedScrollView>
 
 </layout>
-

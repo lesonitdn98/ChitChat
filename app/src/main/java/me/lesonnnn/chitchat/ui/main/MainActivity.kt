@@ -3,16 +3,20 @@ package me.lesonnnn.chitchat.ui.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.navigation_header_main.*
 import me.lesonnnn.chitchat.BR
 import me.lesonnnn.chitchat.R
 import me.lesonnnn.chitchat.ViewModelProviderFactory
 import me.lesonnnn.chitchat.databinding.ActivityMainBinding
 import me.lesonnnn.chitchat.ui.base.BaseActivity
+import me.lesonnnn.chitchat.ui.main.contact.ContactFragment
+import me.lesonnnn.chitchat.ui.main.home.HomeFragment
 import javax.inject.Inject
 
 class MainActivity :
@@ -34,11 +38,7 @@ class MainActivity :
     @Inject
     lateinit var factory: ViewModelProviderFactory
 
-    @Inject
-    lateinit var pageAdapter: MainPageAdapter
-
     private var mActivityMainBinding: ActivityMainBinding? = null
-    private var mTab = TAB.TAB_HOME
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -56,9 +56,9 @@ class MainActivity :
         super.onCreate(savedInstanceState)
         mActivityMainBinding = getViewDataBinding()
         viewModel?.setNavigator(this)
-        pageAdapter.mItemCount = 5
-        viewPager.adapter = pageAdapter
-        viewPager.currentItem = 0
+        addTab(HomeFragment.newInstance())
+        btnAppBar.setImageResource(R.drawable.ic_search)
+        btnAppBar.visibility = View.VISIBLE
     }
 
     override fun init() {}
@@ -66,40 +66,37 @@ class MainActivity :
     override fun onTabSelected(tab: TAB) {
         when (tab) {
             TAB.TAB_HOME -> {
-                if (mTab != TAB.TAB_HOME) {
-                    mTab = TAB.TAB_HOME
-                    viewPager.currentItem = 0
-                }
+                replaceTab(HomeFragment.newInstance())
+                btnAppBar.setImageResource(R.drawable.ic_search)
+                btnAppBar.visibility = View.VISIBLE
             }
             TAB.TAB_CONTACT -> {
-                if (mTab != TAB.TAB_CONTACT) {
-                    mTab = TAB.TAB_CONTACT
-                    Toast.makeText(this, "contact", Toast.LENGTH_SHORT).show()
-                    viewPager.currentItem = 1
-                }
+                replaceTab(ContactFragment.newInstance())
+                btnAppBar.setImageResource(R.drawable.ic_add_contact)
+                btnAppBar.visibility = View.VISIBLE
             }
             TAB.TAB_QR_CODE -> {
-                if (mTab != TAB.TAB_QR_CODE) {
-                    mTab = TAB.TAB_QR_CODE
-                    Toast.makeText(this, "qr code", Toast.LENGTH_SHORT).show()
-                    viewPager.currentItem = 2
-                }
+                Toast.makeText(this, "qr code", Toast.LENGTH_SHORT).show()
+                btnAppBar.setImageResource(R.drawable.ic_scan)
+                btnAppBar.visibility = View.VISIBLE
             }
             TAB.TAB_GROUP -> {
-                if (mTab != TAB.TAB_GROUP) {
-                    mTab = TAB.TAB_GROUP
-                    Toast.makeText(this, "group", Toast.LENGTH_SHORT).show()
-                    viewPager.currentItem = 3
-                }
+                Toast.makeText(this, "group", Toast.LENGTH_SHORT).show()
+                btnAppBar.visibility = View.INVISIBLE
             }
             TAB.TAB_MENU -> {
-                if (mTab != TAB.TAB_MENU) {
-                    mTab = TAB.TAB_MENU
-                    Toast.makeText(this, "menu", Toast.LENGTH_SHORT).show()
-                    viewPager.currentItem = 4
-                }
+                Toast.makeText(this, "menu", Toast.LENGTH_SHORT).show()
+                btnAppBar.visibility = View.INVISIBLE
             }
         }
+    }
+
+    private fun addTab(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().add(R.id.viewTab, fragment).commit()
+    }
+
+    private fun replaceTab(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.viewTab, fragment).commit()
     }
 
     override fun openSearchView() {
