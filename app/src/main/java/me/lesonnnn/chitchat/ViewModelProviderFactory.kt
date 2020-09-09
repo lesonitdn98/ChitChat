@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import me.lesonnnn.chitchat.data.DataManager
 import me.lesonnnn.chitchat.ui.main.MainViewModel
+import me.lesonnnn.chitchat.ui.main.contact.ContactFragment
+import me.lesonnnn.chitchat.ui.main.contact.ContactViewModel
 import me.lesonnnn.chitchat.ui.main.home.HomeViewModel
 import me.lesonnnn.chitchat.ui.splash.SplashViewModel
 import me.lesonnnn.chitchat.utils.rx.SchedulerProvider
@@ -30,6 +32,9 @@ class ViewModelProviderFactory @Inject constructor(
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(ContactViewModel::class.java) -> {
+                ContactViewModel(mDataManager, mSchedulerProvider) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

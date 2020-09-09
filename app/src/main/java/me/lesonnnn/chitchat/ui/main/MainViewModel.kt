@@ -10,13 +10,30 @@ class MainViewModel constructor(
     schedulerProvider: SchedulerProvider
 ) : BaseViewModel<MainNavigator>(dataManager, schedulerProvider) {
 
+    private var mTab = TAB.TAB_HOME
+
     fun onTabClick(id: Int) {
         when (id) {
-            R.id.tabHome -> navigator?.onTabSelected(TAB.TAB_HOME)
-            R.id.tabContact -> navigator?.onTabSelected(TAB.TAB_CONTACT)
-            R.id.tabQrCode -> navigator?.onTabSelected(TAB.TAB_QR_CODE)
-            R.id.tabGroup -> navigator?.onTabSelected(TAB.TAB_GROUP)
-            R.id.tabMenu -> navigator?.onTabSelected(TAB.TAB_MENU)
+            R.id.tabHome -> if (mTab != TAB.TAB_HOME) {
+                navigator?.onTabSelected(TAB.TAB_HOME)
+                mTab = TAB.TAB_HOME
+            }
+            R.id.tabContact -> if (mTab != TAB.TAB_CONTACT) {
+                navigator?.onTabSelected(TAB.TAB_CONTACT)
+                mTab = TAB.TAB_CONTACT
+            }
+            R.id.tabQrCode -> if (mTab != TAB.TAB_QR_CODE) {
+                navigator?.onTabSelected(TAB.TAB_QR_CODE)
+                mTab = TAB.TAB_QR_CODE
+            }
+            R.id.tabGroup -> if (mTab != TAB.TAB_GROUP) {
+                navigator?.onTabSelected(TAB.TAB_GROUP)
+                mTab = TAB.TAB_GROUP
+            }
+            R.id.tabMenu -> if (mTab != TAB.TAB_MENU) {
+                navigator?.onTabSelected(TAB.TAB_MENU)
+                mTab = TAB.TAB_MENU
+            }
         }
     }
 }

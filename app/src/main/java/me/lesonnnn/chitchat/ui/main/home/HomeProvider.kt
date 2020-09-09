@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class HomeFragmentProvider {
+abstract class HomeProvider {
     @ContributesAndroidInjector
     abstract fun providerHomeFragment(): HomeFragment
 }

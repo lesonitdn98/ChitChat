@@ -60,7 +60,9 @@
             app:contentInsetEnd="0dp"
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
-            app:contentInsetStart="0dp">
+            app:contentInsetStart="0dp"
+            app:fabCradleMargin="@dimen/_10sdp"
+            app:fabCradleRoundedCornerRadius="@dimen/_20sdp">
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -70,18 +72,17 @@
                 <include
                     layout="@layout/navigation_footer_main"
                     bind:viewModel="@{viewModel}" />
-
             </FrameLayout>
-
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/tabQrCode"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="81dp"
             android:onClick="@{(view) -> viewModel.onTabClick(view.id)}"
             app:backgroundTint="@color/green"
             app:layout_anchor="@id/bottomAppBar"
+            app:layout_anchorGravity="center"
             app:srcCompat="@drawable/ic_qr_code"
             app:tint="@color/white" />
 

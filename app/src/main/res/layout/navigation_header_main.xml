@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/btnSearch"
+        android:id="@+id/btnAppBar"
         android:layout_width="@dimen/_48sdp"
         android:layout_height="@dimen/_48sdp"
+        android:background="@drawable/bg_btn_transparent"
         android:padding="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_search"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

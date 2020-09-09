@@ -46,7 +46,6 @@
             android:id="@+id/viewQrCode"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_48sdp"
-            android:background="@drawable/bg_menu_tab"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
