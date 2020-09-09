@@ -34,6 +34,9 @@ class MainActivity :
     @Inject
     lateinit var factory: ViewModelProviderFactory
 
+    @Inject
+    lateinit var pageAdapter: MainPageAdapter
+
     private var mActivityMainBinding: ActivityMainBinding? = null
     private var mTab = TAB.TAB_HOME
 
@@ -53,6 +56,9 @@ class MainActivity :
         super.onCreate(savedInstanceState)
         mActivityMainBinding = getViewDataBinding()
         viewModel?.setNavigator(this)
+        pageAdapter.mItemCount = 5
+        viewPager.adapter = pageAdapter
+        viewPager.currentItem = 0
     }
 
     override fun init() {}

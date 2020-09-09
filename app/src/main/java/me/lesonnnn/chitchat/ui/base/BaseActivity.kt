@@ -20,7 +20,6 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
     Callback {
 
     private var mViewDataBinding: T? = null
-    private var mViewModel: V? = null
 
     abstract val bindingVariable: Int
 
@@ -38,13 +37,9 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
         init()
     }
 
-    override fun onFragmentAttached() {
-        TODO("Not yet implemented")
-    }
+    override fun onFragmentAttached() {}
 
-    override fun onFragmentDetached(tag: String?) {
-        TODO("Not yet implemented")
-    }
+    override fun onFragmentDetached(tag: String?) {}
 
     open fun getViewDataBinding(): T? {
         return mViewDataBinding
@@ -74,8 +69,7 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
 
     private fun performDataBinding() {
         mViewDataBinding = DataBindingUtil.setContentView(this, layoutId)
-        mViewModel = if (mViewModel == null) viewModel else mViewModel
-        mViewDataBinding?.setVariable(bindingVariable, mViewModel)
+        mViewDataBinding?.setVariable(bindingVariable, viewModel)
         mViewDataBinding?.lifecycleOwner = this
         mViewDataBinding?.executePendingBindings()
     }

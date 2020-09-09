@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="me.lesonnnn.chitchat.ui.main.home.HomeFragment" />
+            type="me.lesonnnn.chitchat.ui.main.home.HomeViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -32,7 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_68sdp"
+            android:layout_marginEnd="@dimen/_20ssp"
             android:padding="@dimen/_10sdp"
             app:backgroundTint="@color/green"
             app:srcCompat="@drawable/ic_add"

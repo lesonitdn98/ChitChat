@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import me.lesonnnn.chitchat.di.module.MainModule
 import me.lesonnnn.chitchat.ui.main.MainActivity
+import me.lesonnnn.chitchat.ui.main.home.HomeFragmentProvider
 import me.lesonnnn.chitchat.ui.splash.SplashActivity
 
 @Module
@@ -12,7 +13,7 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector
     abstract fun bindSplashActivity(): SplashActivity
 
-    @ContributesAndroidInjector(modules = [(MainModule::class)])
+    @ContributesAndroidInjector(modules = [MainModule::class, HomeFragmentProvider::class])
     abstract fun bindMainActivity(): MainActivity
 
 }

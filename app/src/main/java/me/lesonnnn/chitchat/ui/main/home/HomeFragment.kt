@@ -1,5 +1,6 @@
 package me.lesonnnn.chitchat.ui.main.home
 
+import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
 import me.lesonnnn.chitchat.BR
@@ -9,7 +10,7 @@ import me.lesonnnn.chitchat.databinding.FragmentHomeBinding
 import me.lesonnnn.chitchat.ui.base.BaseFragment
 import javax.inject.Inject
 
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigator, HomeViewModel>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigator, HomeViewModel>(), HomeNavigator {
 
     companion object {
         private var instance: HomeFragment? = null
@@ -35,5 +36,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigator, HomeViewMo
                 this, it
             ).get(HomeViewModel::class.java)
         }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.setNavigator(this)
+    }
 
 }

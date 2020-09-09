@@ -11,12 +11,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import dagger.android.support.AndroidSupportInjection
 
-@Suppress("UNCHECKED_CAST")
 abstract class BaseFragment<T : ViewDataBinding, N, V : BaseViewModel<N>> : Fragment() {
-    private var mActivity: BaseActivity<T, N, V>? = null
+    private var mActivity: BaseActivity<*, *, *>? = null
     private var mRootView: View? = null
     private var viewDataBinding: T? = null
-    private var mViewModel: V? = null
 
     abstract val bindingVariable: Int
 
@@ -28,7 +26,7 @@ abstract class BaseFragment<T : ViewDataBinding, N, V : BaseViewModel<N>> : Frag
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is BaseActivity<*, *, *>) {
-            val activity: BaseActivity<T, N, V> = context as BaseActivity<T, N, V>
+            val activity: BaseActivity<*, *, *> = context
             mActivity = activity
             activity.onFragmentAttached()
         }
@@ -37,7 +35,6 @@ abstract class BaseFragment<T : ViewDataBinding, N, V : BaseViewModel<N>> : Frag
     override fun onCreate(savedInstanceState: Bundle?) {
         performDependencyInjection()
         super.onCreate(savedInstanceState)
-        mViewModel = viewModel
         setHasOptionsMenu(false)
     }
 
@@ -58,12 +55,12 @@ abstract class BaseFragment<T : ViewDataBinding, N, V : BaseViewModel<N>> : Frag
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding!!.setVariable(bindingVariable, mViewModel)
-        viewDataBinding!!.lifecycleOwner = this
-        viewDataBinding!!.executePendingBindings()
+        viewDataBinding?.setVariable(bindingVariable, viewModel)
+        viewDataBinding?.lifecycleOwner = this
+        viewDataBinding?.executePendingBindings()
     }
 
-    val baseActivity: BaseActivity<T, N, V>?
+    val baseActivity: BaseActivity<*, *, *>?
         get() = mActivity
 
     fun hideKeyboard() {
