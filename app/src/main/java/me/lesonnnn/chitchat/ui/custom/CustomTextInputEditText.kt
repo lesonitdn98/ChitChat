@@ -53,6 +53,7 @@ class CustomTextInputEditText : TextInputEditText {
         get() {
             return if (parent is TextInputLayout) (parent as? TextInputLayout) else (parent?.parent as? TextInputLayout)
         }
+
     private val searchToggleButton: View?
         get() {
             return (parent as? View)?.findViewById(R.id.tilSearch)

@@ -36,4 +36,14 @@ class MainViewModel constructor(
             }
         }
     }
+
+    fun onBtnAppBarClick() {
+        when (mTab) {
+            TAB.TAB_HOME -> navigator?.openSearchView()
+            TAB.TAB_CONTACT -> navigator?.openAddContactView()
+            TAB.TAB_QR_CODE -> navigator?.openScanView()
+            TAB.TAB_GROUP -> TODO()
+            TAB.TAB_MENU -> TODO()
+        }
+    }
 }
