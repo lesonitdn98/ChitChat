@@ -43,7 +43,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <include layout="@layout/navigation_header_main" />
+                    <include
+                        layout="@layout/navigation_header_main"
+                        bind:viewModel="@{viewModel}" />
                 </FrameLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -61,7 +63,7 @@
             app:contentInsetLeft="0dp"
             app:contentInsetRight="0dp"
             app:contentInsetStart="0dp"
-            app:fabCradleMargin="@dimen/_10sdp"
+            app:fabCradleMargin="@dimen/_5sdp"
             app:fabCradleRoundedCornerRadius="@dimen/_20sdp">
 
             <FrameLayout
@@ -78,7 +80,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/tabQrCode"
             android:layout_width="wrap_content"
-            android:layout_height="81dp"
+            android:layout_height="wrap_content"
             android:onClick="@{(view) -> viewModel.onTabClick(view.id)}"
             app:backgroundTint="@color/green"
             app:layout_anchor="@id/bottomAppBar"

@@ -1,10 +1,12 @@
 package me.lesonnnn.chitchat.ui.main
 
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.transition.Explode
 import android.view.View
-import android.widget.Toast
+import android.view.Window
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
@@ -16,7 +18,11 @@ import me.lesonnnn.chitchat.ViewModelProviderFactory
 import me.lesonnnn.chitchat.databinding.ActivityMainBinding
 import me.lesonnnn.chitchat.ui.base.BaseActivity
 import me.lesonnnn.chitchat.ui.main.contact.ContactFragment
+import me.lesonnnn.chitchat.ui.main.group.GroupFragment
 import me.lesonnnn.chitchat.ui.main.home.HomeFragment
+import me.lesonnnn.chitchat.ui.main.menu.MenuFragment
+import me.lesonnnn.chitchat.ui.main.qrcode.QRFragment
+import me.lesonnnn.chitchat.ui.search.SearchActivity
 import javax.inject.Inject
 
 class MainActivity :
@@ -44,7 +50,7 @@ class MainActivity :
         get() = BR.viewModel
     override val layoutId: Int
         get() = R.layout.activity_main
-    override val viewModel: MainViewModel?
+    override val viewModel: MainViewModel
         get() = factory.let {
             ViewModelProvider(
                 this,
@@ -55,8 +61,8 @@ class MainActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mActivityMainBinding = getViewDataBinding()
-        viewModel?.setNavigator(this)
-        addTab(HomeFragment.newInstance())
+        viewModel.setNavigator(this)
+        addTab(HomeFragment.getInstance())
         btnAppBar.setImageResource(R.drawable.ic_search)
         btnAppBar.visibility = View.VISIBLE
     }
@@ -66,26 +72,26 @@ class MainActivity :
     override fun onTabSelected(tab: TAB) {
         when (tab) {
             TAB.TAB_HOME -> {
-                replaceTab(HomeFragment.newInstance())
+                replaceTab(HomeFragment.getInstance())
                 btnAppBar.setImageResource(R.drawable.ic_search)
                 btnAppBar.visibility = View.VISIBLE
             }
             TAB.TAB_CONTACT -> {
-                replaceTab(ContactFragment.newInstance())
+                replaceTab(ContactFragment.getInstance())
                 btnAppBar.setImageResource(R.drawable.ic_add_contact)
                 btnAppBar.visibility = View.VISIBLE
             }
             TAB.TAB_QR_CODE -> {
-                Toast.makeText(this, "qr code", Toast.LENGTH_SHORT).show()
+                replaceTab(QRFragment.getInstance())
                 btnAppBar.setImageResource(R.drawable.ic_scan)
                 btnAppBar.visibility = View.VISIBLE
             }
             TAB.TAB_GROUP -> {
-                Toast.makeText(this, "group", Toast.LENGTH_SHORT).show()
+                replaceTab(GroupFragment.getInstance())
                 btnAppBar.visibility = View.INVISIBLE
             }
             TAB.TAB_MENU -> {
-                Toast.makeText(this, "menu", Toast.LENGTH_SHORT).show()
+                replaceTab(MenuFragment.getInstance())
                 btnAppBar.visibility = View.INVISIBLE
             }
         }
@@ -100,14 +106,25 @@ class MainActivity :
     }
 
     override fun openSearchView() {
-        TODO("Not yet implemented")
+        val options = ActivityOptions
+            .makeSceneTransitionAnimation(this, btnAppBar, "btnAppBarTransition")
+        startActivity(SearchActivity.getIntent(this), options.toBundle())
     }
 
-    override fun handleError(throwable: Throwable?) {
-        // handle error
-    }
+    override fun openAddContactView() {}
+
+    override fun openScanView() {}
+
+    override fun handleError(throwable: Throwable?) {}
 
     override fun androidInjector(): DispatchingAndroidInjector<Any>? {
         return dispatchingAndroidInjector
+    }
+
+    override fun addAnimTransition() {
+        with(window) {
+            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+            sharedElementEnterTransition = Explode()
+        }
     }
 }

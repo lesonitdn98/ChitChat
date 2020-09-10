@@ -14,4 +14,5 @@
     <string name="group">Group</string>
     <string name="what_are_you_searching_for">What are you searching for?</string>
     <string name="search">Search</string>
+    <string name="invalid_email_password">Please provide a valid email and password.</string>
 </resources>

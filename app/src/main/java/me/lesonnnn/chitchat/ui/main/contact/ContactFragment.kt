@@ -16,7 +16,7 @@ class ContactFragment : BaseFragment<FragmentContactBinding, ContactNavigator, C
         private var instance: ContactFragment? = null
 
         @JvmStatic
-        fun newInstance() = instance ?: synchronized(this) {
+        fun getInstance() = instance ?: synchronized(this) {
             instance ?: ContactFragment().also { instance = it }
         }
     }
