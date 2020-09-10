@@ -4,6 +4,8 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.transition.Explode
 import android.view.View
 import android.view.Window
@@ -63,7 +65,7 @@ class MainActivity :
         mActivityMainBinding = getViewDataBinding()
         viewModel.setNavigator(this)
         addTab(HomeFragment.getInstance())
-        btnAppBar.setImageResource(R.drawable.ic_search)
+        btnIconAppBar.setImageResource(R.drawable.ic_search)
         btnAppBar.visibility = View.VISIBLE
     }
 
@@ -73,17 +75,17 @@ class MainActivity :
         when (tab) {
             TAB.TAB_HOME -> {
                 replaceTab(HomeFragment.getInstance())
-                btnAppBar.setImageResource(R.drawable.ic_search)
+                btnIconAppBar.setImageResource(R.drawable.ic_search)
                 btnAppBar.visibility = View.VISIBLE
             }
             TAB.TAB_CONTACT -> {
                 replaceTab(ContactFragment.getInstance())
-                btnAppBar.setImageResource(R.drawable.ic_add_contact)
+                btnIconAppBar.setImageResource(R.drawable.ic_add_contact)
                 btnAppBar.visibility = View.VISIBLE
             }
             TAB.TAB_QR_CODE -> {
                 replaceTab(QRFragment.getInstance())
-                btnAppBar.setImageResource(R.drawable.ic_scan)
+                btnIconAppBar.setImageResource(R.drawable.ic_scan)
                 btnAppBar.visibility = View.VISIBLE
             }
             TAB.TAB_GROUP -> {
@@ -107,8 +109,9 @@ class MainActivity :
 
     override fun openSearchView() {
         val options = ActivityOptions
-            .makeSceneTransitionAnimation(this, btnAppBar, "btnAppBarTransition")
+            .makeSceneTransitionAnimation(this, btnIconAppBar, "btnAppBarTransition")
         startActivity(SearchActivity.getIntent(this), options.toBundle())
+        delayBtnOnClick(btnAppBar)
     }
 
     override fun openAddContactView() {}
@@ -124,7 +127,7 @@ class MainActivity :
     override fun addAnimTransition() {
         with(window) {
             requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-            sharedElementEnterTransition = Explode()
+            enterTransition = Explode()
         }
     }
 }
