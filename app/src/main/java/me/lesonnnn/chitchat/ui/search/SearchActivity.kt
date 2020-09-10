@@ -57,12 +57,12 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, SearchNavigator, Sear
     override fun addAnimTransition() {
         with(window) {
             requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-            sharedElementEnterTransition = Explode()
+            enterTransition = Explode()
         }
     }
 
     override fun closeSearchView() {
         hideKeyboard()
-        finishAfterTransition()
+        onBackPressed()
     }
 }

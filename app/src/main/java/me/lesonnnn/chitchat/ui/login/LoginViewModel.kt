@@ -9,8 +9,8 @@ import me.lesonnnn.chitchat.utils.rx.SchedulerProvider
 class LoginViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvider) :
     BaseViewModel<LoginNavigator>(dataManager, schedulerProvider) {
 
-    var email: MutableLiveData<String> = MutableLiveData("")
-    var password: MutableLiveData<String> = MutableLiveData("")
+    var email: MutableLiveData<String> = MutableLiveData("leson@gmail.com")
+    var password: MutableLiveData<String> = MutableLiveData("123123")
 
     fun login(email: String, password: String) {
         this.email.value = email

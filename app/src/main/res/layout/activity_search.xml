@@ -71,7 +71,6 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:transitionName="btnAppBarTransition"
                                 app:srcCompat="@drawable/ic_back"
                                 tools:ignore="ContentDescription" />
 
@@ -82,10 +81,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_15sdp"
-                            android:transitionName="btnAppBarTransition"
                             app:layout_constraintBottom_toBottomOf="@id/tilSearch"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@id/tilSearch"
+                            android:transitionName="btnAppBarTransition"
                             app:srcCompat="@drawable/ic_search"
                             tools:ignore="ContentDescription" />
 
