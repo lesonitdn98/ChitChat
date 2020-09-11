@@ -86,11 +86,4 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
     fun hideLoading() {
         TODO("Not yet implemented")
     }
-
-    fun delayBtnOnClick(view : View) {
-        view.isEnabled = false
-        Handler(Looper.getMainLooper()).postDelayed({
-            view.isEnabled = true
-        },500)
-    }
 }
