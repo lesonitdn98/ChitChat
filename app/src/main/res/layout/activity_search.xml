@@ -76,51 +76,50 @@
 
                         </LinearLayout>
 
-                        <ImageView
-                            android:id="@+id/imvIconSearch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_15sdp"
-                            app:layout_constraintBottom_toBottomOf="@id/tilSearch"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/tilSearch"
-                            android:transitionName="btnAppBarTransition"
-                            app:srcCompat="@drawable/ic_search"
-                            tools:ignore="ContentDescription" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tilSearch"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                        <EditText
+                            android:id="@+id/edtSearch"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_5sdp"
-                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_marginEnd="0dp"
                             android:background="@color/backgroundColor"
+                            android:fontFamily="@font/sf_pro_display_medium"
+                            android:hint="@string/what_are_you_searching_for"
+                            android:imeOptions="actionSearch"
+                            android:inputType="textCapWords"
+                            android:textColor="@color/textColor"
+                            android:textColorHint="@color/textColorLight"
+                            android:textSize="@dimen/_13ssp"
                             app:boxBackgroundColor="@color/backgroundColor"
                             app:boxStrokeColor="@color/backgroundColor"
                             app:boxStrokeWidth="0dp"
-                            app:endIconMode="clear_text"
-                            app:endIconTint="@color/textColor"
-                            app:hintEnabled="false"
+                            app:layout_constraintEnd_toStartOf="@id/btnSearch"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/btnClose"
+                            tools:ignore="Autofill" />
+
+                        <LinearLayout
+                            android:id="@+id/btnSearch"
+                            android:layout_width="@dimen/_48sdp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:background="@drawable/bg_btn_transparent"
+                            android:gravity="center"
+                            android:onClick="@{() -> viewModel.search()}"
+                            app:layout_constraintBottom_toBottomOf="@id/edtSearch"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/imvIconSearch"
-                            app:layout_constraintTop_toBottomOf="@id/btnClose">
+                            app:layout_constraintTop_toTopOf="@id/edtSearch">
 
-                            <me.lesonnnn.chitchat.ui.custom.CustomTextInputEditText
-                                android:id="@+id/tiedSearch"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@color/backgroundColor"
-                                android:fontFamily="@font/sf_pro_display_medium"
-                                android:hint="@string/what_are_you_searching_for"
-                                android:imeOptions="actionSearch"
-                                android:inputType="textCapWords"
-                                android:paddingBottom="@dimen/_18sdp"
-                                android:textColor="@color/textColor"
-                                android:textColorHint="@color/textColorLight"
-                                android:textSize="@dimen/_13ssp" />
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                            <ImageView
+                                android:id="@+id/imvIconSearch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/_15sdp"
+                                android:transitionName="btnAppBarTransition"
+                                app:srcCompat="@drawable/ic_search"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>

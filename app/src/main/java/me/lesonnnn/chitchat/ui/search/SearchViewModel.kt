@@ -11,4 +11,8 @@ class SearchViewModel(dataManager: DataManager, schedulerProvider: SchedulerProv
         navigator?.closeSearchView()
     }
 
+    fun search() {
+
+    }
+
 }
