@@ -3,10 +3,14 @@ package me.lesonnnn.chitchat.ui.search
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.transition.Explode
 import android.view.Window
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
+import kotlinx.android.synthetic.main.activity_search.*
 import me.lesonnnn.chitchat.BR
 import me.lesonnnn.chitchat.R
 import me.lesonnnn.chitchat.ViewModelProviderFactory
@@ -50,9 +54,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, SearchNavigator, Sear
         viewModel.setNavigator(this)
     }
 
-    override fun init() {
-
-    }
+    override fun init() {}
 
     override fun addAnimTransition() {
         with(window) {
