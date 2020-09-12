@@ -54,12 +54,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginNavigator, LoginVi
     override fun init() {}
 
     override fun login() {
-        val email = getViewDataBinding().edtEmail.text.toString().trim()
+        val email = getViewDataBinding().edtUsername.text.toString().trim()
         val password = getViewDataBinding().edtPassword.text.toString().trim()
         if (viewModel.isEmailAndPasswordValid(email, password)) {
             viewModel.login(email, password)
         } else {
-            Toast.makeText(this, getString(R.string.invalid_email_password), Toast.LENGTH_SHORT)
+            Toast.makeText(this, getString(R.string.invalid_username_password), Toast.LENGTH_SHORT)
                 .show()
         }
     }
