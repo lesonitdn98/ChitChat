@@ -10,6 +10,7 @@ import me.lesonnnn.chitchat.ui.main.group.GroupProvider
 import me.lesonnnn.chitchat.ui.main.home.HomeProvider
 import me.lesonnnn.chitchat.ui.main.menu.MenuProvider
 import me.lesonnnn.chitchat.ui.main.qrcode.QRProvider
+import me.lesonnnn.chitchat.ui.register.RegisterActivity
 import me.lesonnnn.chitchat.ui.search.SearchActivity
 import me.lesonnnn.chitchat.ui.splash.SplashActivity
 
@@ -21,6 +22,9 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun bindLoginActivity(): LoginActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindRegisterActivity() : RegisterActivity
 
     @ContributesAndroidInjector(
         modules = [MainModule::class,

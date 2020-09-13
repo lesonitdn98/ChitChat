@@ -22,14 +22,16 @@ class LoginViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvi
         navigator?.login()
     }
 
-    fun isEmailAndPasswordValid(email: String?, password: String?): Boolean {
-        if (email == null || email.isBlank()) {
-            return false
-        } else if (!AppUtils.isEmailValid(email)) {
+    fun isEmailAndPasswordValid(email: String, password: String?): Boolean {
+        if (email.isBlank() || !AppUtils.isEmailValid(email)) {
             return false
         } else if (password == null || password.isBlank()) {
             return false
         }
         return true
+    }
+
+    fun onCreateAccountClick() {
+        navigator?.onCreateAccount()
     }
 }

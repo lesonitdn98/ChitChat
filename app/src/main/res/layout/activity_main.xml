@@ -66,22 +66,16 @@
             app:fabCradleMargin="@dimen/_5sdp"
             app:fabCradleRoundedCornerRadius="@dimen/_20sdp">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0px">
-
-                <include
-                    layout="@layout/navigation_footer_main"
-                    bind:viewModel="@{viewModel}" />
-            </FrameLayout>
+            <include
+                layout="@layout/navigation_footer_main"
+                bind:viewModel="@{viewModel}" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/tabQrCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{(view) -> viewModel.onTabClick(view.id)}"
+            android:onClick="@{(view) -> viewModel.onTabQRClick()}"
             app:backgroundTint="@color/green"
             app:layout_anchor="@id/bottomAppBar"
             app:layout_anchorGravity="center"

@@ -3,14 +3,21 @@ package me.lesonnnn.chitchat.ui.main
 import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.transition.Explode
 import android.view.View
 import android.view.Window
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.navigation_footer_main.*
 import kotlinx.android.synthetic.main.navigation_header_main.*
 import me.lesonnnn.chitchat.BR
 import me.lesonnnn.chitchat.R
@@ -26,11 +33,13 @@ import me.lesonnnn.chitchat.ui.search.SearchActivity
 import me.lesonnnn.chitchat.utils.AppUtils.Companion.delayBtnOnClick
 import javax.inject.Inject
 
+
 class MainActivity :
     BaseActivity<ActivityMainBinding, MainNavigator, MainViewModel>(),
     MainNavigator, HasAndroidInjector {
 
     companion object {
+        var tabCurrent = TAB.TAB_HOME
         private var instance: Intent? = null
 
         @JvmStatic
@@ -39,13 +48,16 @@ class MainActivity :
         }
     }
 
+    private lateinit var mTabs: ArrayList<Fragment>
+
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     @Inject
     lateinit var factory: ViewModelProviderFactory
 
-    private var mActivityMainBinding: ActivityMainBinding? = null
+    @Inject
+    lateinit var mainTabAdapter: MainTabAdapter
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -61,49 +73,94 @@ class MainActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mActivityMainBinding = getViewDataBinding()
         viewModel.setNavigator(this)
-        addTab(HomeFragment.getInstance())
         btnIconAppBar.setImageResource(R.drawable.ic_search)
         btnAppBar.visibility = View.VISIBLE
     }
 
-    override fun init() {}
 
-    override fun onTabSelected(tab: TAB) {
-        when (tab) {
-            TAB.TAB_HOME -> {
-                replaceTab(HomeFragment.getInstance())
-                btnIconAppBar.setImageResource(R.drawable.ic_search)
-                btnAppBar.visibility = View.VISIBLE
-            }
-            TAB.TAB_CONTACT -> {
-                replaceTab(ContactFragment.getInstance())
-                btnIconAppBar.setImageResource(R.drawable.ic_add_contact)
-                btnAppBar.visibility = View.VISIBLE
-            }
-            TAB.TAB_QR_CODE -> {
-                replaceTab(QRFragment.getInstance())
-                btnIconAppBar.setImageResource(R.drawable.ic_scan)
-                btnAppBar.visibility = View.VISIBLE
-            }
-            TAB.TAB_GROUP -> {
-                replaceTab(GroupFragment.getInstance())
-                btnAppBar.visibility = View.INVISIBLE
-            }
-            TAB.TAB_MENU -> {
-                replaceTab(MenuFragment.getInstance())
-                btnAppBar.visibility = View.INVISIBLE
-            }
-        }
-    }
+    @Suppress("DEPRECATION")
+    override fun init() {
+        mTabs = ArrayList()
+        mTabs.add(HomeFragment.getInstance())
+        mTabs.add(ContactFragment.getInstance())
+        mTabs.add(QRFragment.getInstance())
+        mTabs.add(GroupFragment.getInstance())
+        mTabs.add(MenuFragment.getInstance())
 
-    private fun addTab(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().add(R.id.viewTab, fragment).commit()
-    }
+        mainTabAdapter.mTabs = mTabs
+        viewTabs.orientation = ORIENTATION_HORIZONTAL
+        viewTabs.adapter = mainTabAdapter
 
-    private fun replaceTab(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.viewTab, fragment).commit()
+        TabLayoutMediator(tabMain, viewTabs) { tab, position ->
+            when (position) {
+                0 -> {
+                    tab.icon = ContextCompat.getDrawable(this, R.drawable.ic_chat)
+                    viewTabs.currentItem = position
+                }
+                1 -> {
+                    tab.icon = ContextCompat.getDrawable(this, R.drawable.ic_contact)
+                }
+                2 -> {
+                    tab.view.isClickable = false
+                }
+                3 -> {
+                    tab.icon = ContextCompat.getDrawable(this, R.drawable.ic_user_group)
+                }
+                4 -> {
+                    tab.icon = ContextCompat.getDrawable(this, R.drawable.ic_menu)
+                    btnAppBar.visibility = View.INVISIBLE
+                }
+            }
+        }.attach()
+
+        tabMain.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                viewTabs.currentItem = tab!!.position
+                val tabIconColor = ContextCompat.getColor(this@MainActivity, R.color.green)
+                when (tab.position) {
+                    0 -> {
+                        tabCurrent = TAB.TAB_HOME
+                        tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+                        btnIconAppBar.setImageResource(R.drawable.ic_search)
+                        btnAppBar.visibility = View.VISIBLE
+                    }
+                    1 -> {
+                        tabCurrent = TAB.TAB_CONTACT
+                        tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+                        btnIconAppBar.setImageResource(R.drawable.ic_add_contact)
+                        btnAppBar.visibility = View.VISIBLE
+                    }
+                    2 -> {
+                        tabCurrent = TAB.TAB_QR_CODE
+                        btnIconAppBar.setImageResource(R.drawable.ic_scan)
+                        btnAppBar.visibility = View.VISIBLE
+                    }
+                    3 -> {
+                        tabCurrent = TAB.TAB_GROUP
+                        tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+                        btnAppBar.visibility = View.INVISIBLE
+                    }
+                    4 -> {
+                        tabCurrent = TAB.TAB_MENU
+                        tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+                        btnAppBar.visibility = View.INVISIBLE
+                    }
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                if (tab!!.position != 2) {
+                    val tabIconColor = ContextCompat.getColor(this@MainActivity, R.color.textColor)
+                    tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
+                }
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+        tabMain.getTabAt(0)?.select()
+        val tabIconColor = ContextCompat.getColor(this@MainActivity, R.color.green)
+        tabMain.getTabAt(0)?.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
     }
 
     override fun openSearchView() {
@@ -116,6 +173,10 @@ class MainActivity :
     override fun openAddContactView() {}
 
     override fun openScanView() {}
+
+    override fun onTabQRCodeClick() {
+        tabMain.getTabAt(2)?.select()
+    }
 
     override fun handleError(throwable: Throwable?) {}
 

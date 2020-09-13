@@ -37,6 +37,7 @@
             android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait"
             android:launchMode = "singleTop"/>
+        <activity android:name=".ui.register.RegisterActivity" />
     </application>
 
 </manifest>

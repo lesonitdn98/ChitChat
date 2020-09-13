@@ -11,6 +11,7 @@ import me.lesonnnn.chitchat.ui.main.group.GroupViewModel
 import me.lesonnnn.chitchat.ui.main.home.HomeViewModel
 import me.lesonnnn.chitchat.ui.main.menu.MenuViewModel
 import me.lesonnnn.chitchat.ui.main.qrcode.QRViewModel
+import me.lesonnnn.chitchat.ui.register.RegisterViewModel
 import me.lesonnnn.chitchat.ui.search.SearchViewModel
 import me.lesonnnn.chitchat.ui.splash.SplashViewModel
 import me.lesonnnn.chitchat.utils.rx.SchedulerProvider
@@ -34,6 +35,9 @@ class ViewModelProviderFactory @Inject constructor(
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                RegisterViewModel(mDataManager, mSchedulerProvider) as T
             }
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(mDataManager, mSchedulerProvider) as T
