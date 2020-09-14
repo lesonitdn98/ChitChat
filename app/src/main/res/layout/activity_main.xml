@@ -23,7 +23,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarMain"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_height="@dimen/_55sdp"
             android:background="@android:color/transparent"
             app:cardUseCompatPadding="false"
             app:elevation="0dp">
@@ -64,7 +64,7 @@
             app:contentInsetRight="0dp"
             app:contentInsetStart="0dp"
             app:fabCradleMargin="@dimen/_5sdp"
-            app:fabCradleRoundedCornerRadius="@dimen/_20sdp">
+            app:fabCradleRoundedCornerRadius="@dimen/_16sdp">
 
             <include
                 layout="@layout/navigation_footer_main"

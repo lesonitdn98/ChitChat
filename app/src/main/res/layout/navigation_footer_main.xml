@@ -15,6 +15,6 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         app:tabIndicatorColor="@color/green"
-        app:tabRippleColor="@color/greenTransparent" />
+        app:tabRippleColor="@android:color/transparent" />
 
 </layout>

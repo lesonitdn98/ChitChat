@@ -12,6 +12,7 @@ buildscript {
     cardViewVersion = '1.0.0'
     materialVersion = '1.2.1'
     viewPage2Version = '1.1.0-alpha01'
+    circleimageviewVersion = '3.1.0'
 
     // App dependencies
     supportLibraryVersion = '1.2.0'
