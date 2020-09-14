@@ -11,11 +11,13 @@ import android.view.Window
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2.GONE
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.navigation_footer_main.*
 import kotlinx.android.synthetic.main.navigation_header_main.*

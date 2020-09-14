@@ -7,4 +7,8 @@ import me.lesonnnn.chitchat.utils.rx.SchedulerProvider
 class MenuViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvider) :
     BaseViewModel<MenuNavigator>(dataManager, schedulerProvider) {
 
+    fun onClick(id : Int) {
+
+    }
+
 }

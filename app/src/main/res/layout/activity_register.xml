@@ -51,7 +51,7 @@
                     android:layout_height="@dimen/_48sdp"
                     android:layout_margin="@dimen/_10sdp"
                     android:background="@drawable/bg_edt_input"
-                    android:drawableStart="@drawable/ic_person"
+                    android:drawableStart="@drawable/ic_user"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/sf_pro_display_regular"
                     android:hint="@string/full_name"
