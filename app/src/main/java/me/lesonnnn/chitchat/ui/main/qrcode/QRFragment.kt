@@ -44,4 +44,7 @@ class QRFragment : BaseFragment<FragmentQrBinding, QRNavigator, QRViewModel>(), 
         viewModel.setNavigator(this)
     }
 
+    override fun init() {
+    }
+
 }

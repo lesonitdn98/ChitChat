@@ -7,11 +7,15 @@ import javax.inject.Inject
 
 private const val PREF_KEY_DARK_MODE = "PREF_KEY_DARK_MODE"
 
-class AppPreferencesHelper @Inject constructor(context: Context, @PreferenceInfo prefFileName : String) : PreferencesHelper {
+class AppPreferencesHelper @Inject constructor(
+    context: Context,
+    @PreferenceInfo prefFileName: String
+) : PreferencesHelper {
 
-    private val mPrefs: SharedPreferences = context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE)
+    private val mPrefs: SharedPreferences =
+        context.getSharedPreferences(prefFileName, Context.MODE_PRIVATE)
 
-    override fun getDarkMode(): Boolean {
+    override fun isDarkMode(): Boolean {
         return mPrefs.getBoolean(PREF_KEY_DARK_MODE, false)
     }
 

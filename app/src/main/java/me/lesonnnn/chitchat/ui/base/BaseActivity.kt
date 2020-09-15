@@ -4,19 +4,18 @@ import android.annotation.TargetApi
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.transition.Explode
 import android.view.View
-import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dagger.android.AndroidInjection
+import me.lesonnnn.chitchat.data.local.prefs.PreferencesHelper
 import me.lesonnnn.chitchat.ui.base.BaseFragment.Callback
 import me.lesonnnn.chitchat.utils.NetworkUtils
+import javax.inject.Inject
 
 abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppCompatActivity(),
     Callback {
@@ -34,8 +33,12 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
 
     abstract fun init()
 
+    @Inject
+    lateinit var preferencesHelper: PreferencesHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         performDependencyInjection()
+        initThemeMode()
         super.onCreate(savedInstanceState)
         addAnimTransition()
         performDataBinding()
@@ -66,6 +69,14 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
 
     fun isNetworkConnected(): Boolean {
         return NetworkUtils.isNetworkConnected(applicationContext)
+    }
+
+    private fun initThemeMode() {
+        if (preferencesHelper.isDarkMode()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun performDependencyInjection() {

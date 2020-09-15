@@ -23,6 +23,8 @@ abstract class BaseFragment<T : ViewDataBinding, N, V : BaseViewModel<N>> : Frag
 
     abstract val viewModel: V
 
+    abstract fun init()
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is BaseActivity<*, *, *>) {
@@ -58,6 +60,7 @@ abstract class BaseFragment<T : ViewDataBinding, N, V : BaseViewModel<N>> : Frag
         viewDataBinding?.setVariable(bindingVariable, viewModel)
         viewDataBinding?.lifecycleOwner = this
         viewDataBinding?.executePendingBindings()
+        init()
     }
 
     val baseActivity: BaseActivity<*, *, *>?

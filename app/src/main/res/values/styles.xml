@@ -8,6 +8,11 @@
         <item name="android:windowActivityTransitions">true</item>
     </style>
 
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
     <!-- Splash Screen theme. -->
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/bg_splashscreen</item>
@@ -36,6 +41,18 @@
         <item name="cornerSizeTopLeft">0dp</item>
         <item name="cornerSizeBottomRight">@dimen/_5sdp</item>
         <item name="cornerSizeBottomLeft">@dimen/_5sdp</item>
+    </style>
+
+    <style name="CustomCardViewStyleMenu" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_custom_cornersMenu</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay_card_custom_cornersMenu" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/_8sdp</item>
+        <item name="cornerSizeTopLeft">@dimen/_8sdp</item>
+        <item name="cornerSizeBottomRight">@dimen/_8sdp</item>
+        <item name="cornerSizeBottomLeft">@dimen/_8sdp</item>
     </style>
 
 </resources>

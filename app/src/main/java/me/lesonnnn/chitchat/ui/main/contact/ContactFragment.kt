@@ -43,4 +43,7 @@ class ContactFragment : BaseFragment<FragmentContactBinding, ContactNavigator, C
         super.onCreate(savedInstanceState)
         viewModel.setNavigator(this)
     }
+
+    override fun init() {
+    }
 }
