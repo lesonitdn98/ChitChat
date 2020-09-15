@@ -1,4 +1,6 @@
 package me.lesonnnn.chitchat.data
 
-interface DataManager {
+import me.lesonnnn.chitchat.data.local.prefs.PreferencesHelper
+
+interface DataManager : PreferencesHelper {
 }

@@ -42,4 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigator, HomeViewMo
         viewModel.setNavigator(this)
     }
 
+    override fun init() {
+    }
+
 }

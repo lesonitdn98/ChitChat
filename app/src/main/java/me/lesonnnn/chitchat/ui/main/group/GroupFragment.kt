@@ -45,4 +45,7 @@ class GroupFragment : BaseFragment<FragmentGroupBinding, GroupNavigator, GroupVi
         viewModel.setNavigator(this)
     }
 
+    override fun init() {
+    }
+
 }
