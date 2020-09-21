@@ -2,6 +2,7 @@ package me.lesonnnn.chitchat.di.builder
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import me.lesonnnn.chitchat.di.module.AppModule
 import me.lesonnnn.chitchat.di.module.MainModule
 import me.lesonnnn.chitchat.ui.login.LoginActivity
 import me.lesonnnn.chitchat.ui.main.MainActivity
@@ -10,6 +11,7 @@ import me.lesonnnn.chitchat.ui.main.group.GroupProvider
 import me.lesonnnn.chitchat.ui.main.home.HomeProvider
 import me.lesonnnn.chitchat.ui.main.menu.MenuProvider
 import me.lesonnnn.chitchat.ui.main.qrcode.QRProvider
+import me.lesonnnn.chitchat.ui.profile.ProfileActivity
 import me.lesonnnn.chitchat.ui.register.RegisterActivity
 import me.lesonnnn.chitchat.ui.search.SearchActivity
 import me.lesonnnn.chitchat.ui.splash.SplashActivity
@@ -39,5 +41,8 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun bindSearchActivity() : SearchActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindProfileActivity() : ProfileActivity
 
 }

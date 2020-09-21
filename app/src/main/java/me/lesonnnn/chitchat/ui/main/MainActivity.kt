@@ -1,6 +1,5 @@
 package me.lesonnnn.chitchat.ui.main
 
-import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
@@ -11,13 +10,11 @@ import android.view.Window
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2.GONE
 import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.navigation_footer_main.*
 import kotlinx.android.synthetic.main.navigation_header_main.*
@@ -93,6 +90,7 @@ class MainActivity :
         mainTabAdapter.mTabs = mTabs
         viewTabs.orientation = ORIENTATION_HORIZONTAL
         viewTabs.adapter = mainTabAdapter
+        viewTabs.offscreenPageLimit = 4
 
         TabLayoutMediator(tabMain, viewTabs) { tab, position ->
             when (position) {
@@ -166,9 +164,7 @@ class MainActivity :
     }
 
     override fun openSearchView() {
-        val options = ActivityOptions
-            .makeSceneTransitionAnimation(this, btnIconAppBar, "btnAppBarTransition")
-        startActivity(SearchActivity.getIntent(this), options.toBundle())
+        startActivity(SearchActivity.getIntent(this))
         delayBtnOnClick(btnAppBar)
     }
 

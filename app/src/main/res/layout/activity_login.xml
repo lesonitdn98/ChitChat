@@ -41,28 +41,29 @@
                     android:text="@string/sign_in"
                     android:textColor="@color/green"
                     android:textSize="@dimen/_24ssp"
-                    app:layout_constraintBottom_toTopOf="@id/edtEmail"
+                    app:layout_constraintBottom_toTopOf="@id/edtPhoneNumber"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/edtEmail"
+                    android:id="@+id/edtPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_48sdp"
                     android:layout_margin="@dimen/_10sdp"
                     android:background="@drawable/bg_edt_input"
-                    android:drawableStart="@drawable/ic_email"
+                    android:drawableStart="@drawable/ic_phone"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/sf_pro_display_regular"
-                    android:hint="@string/email"
+                    android:hint="@string/phone_number"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
+                    android:inputType="phone"
+                    android:maxLength="10"
                     android:paddingStart="@dimen/_10sdp"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingEnd="@dimen/_10sdp"
                     android:paddingRight="@dimen/_10sdp"
-                    android:text="@{viewModel.email}"
+                    android:text="@{viewModel.phone}"
                     android:textColor="@color/textColor"
                     android:textColorHint="@color/textColorLight"
                     android:transitionName="transitionEmail"
@@ -149,6 +150,18 @@
                     app:layout_constraintEnd_toEndOf="@id/edtPassword"
                     app:layout_constraintStart_toStartOf="@id/edtPassword"
                     app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+
+                <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/address_looking_up"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/btnLogin"
+                    app:layout_constraintTop_toBottomOf="@id/btnForgotPass"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,6 @@
 package me.lesonnnn.chitchat.ui.base
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import me.lesonnnn.chitchat.data.DataManager
@@ -10,6 +11,8 @@ abstract class BaseViewModel<N>(
     private var mDataManager: DataManager,
     private var mSchedulerProvider: SchedulerProvider
 ) : ViewModel() {
+
+    private val mIsLoading = MutableLiveData<Boolean>()
 
     private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
     private var mNavigator: WeakReference<N>? = null
@@ -24,6 +27,14 @@ abstract class BaseViewModel<N>(
 
     val dataManager: DataManager
         get() = mDataManager
+
+    open fun getIsLoading(): MutableLiveData<Boolean>? {
+        return mIsLoading
+    }
+
+    open fun setIsLoading(isLoading: Boolean) {
+        mIsLoading.value = isLoading
+    }
 
     val navigator: N?
         get() = mNavigator!!.get()

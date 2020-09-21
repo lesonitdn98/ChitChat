@@ -14,12 +14,14 @@ class MenuViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvid
     fun onClick(id: Int) {
         when (id) {
             R.id.profile -> {
+                navigator?.openMenuProfile()
             }
             R.id.friendRequests -> {
             }
             R.id.notifications -> {
             }
             R.id.signOut -> {
+                navigator?.signOut()
             }
         }
     }

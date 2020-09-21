@@ -1,6 +1,5 @@
 package me.lesonnnn.chitchat.ui.splash
 
-import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
 import me.lesonnnn.chitchat.BR
@@ -18,6 +17,7 @@ class SplashActivity :
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
+
     @Inject
     lateinit var factory: ViewModelProviderFactory
 
@@ -33,18 +33,20 @@ class SplashActivity :
             ).get(SplashViewModel::class.java)
         }
 
-    override fun handleError(throwable: Throwable?) {
-        //
+    override fun openMainActivity() {
+        startActivity(MainActivity.getIntent(this))
+        finish()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.setNavigator(this)
+    override fun openLoginActivity() {
         startActivity(LoginActivity.getIntent(this))
         finish()
     }
 
-    override fun init() {}
+    override fun init() {
+        viewModel.setNavigator(this)
+        viewModel.checkUserAsLogin()
+    }
 
     override fun addAnimTransition() {}
 

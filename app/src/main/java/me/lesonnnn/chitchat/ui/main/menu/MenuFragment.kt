@@ -1,8 +1,6 @@
 package me.lesonnnn.chitchat.ui.main.menu
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +11,8 @@ import me.lesonnnn.chitchat.R
 import me.lesonnnn.chitchat.ViewModelProviderFactory
 import me.lesonnnn.chitchat.databinding.FragmentMenuBinding
 import me.lesonnnn.chitchat.ui.base.BaseFragment
+import me.lesonnnn.chitchat.ui.login.LoginActivity
+import me.lesonnnn.chitchat.ui.profile.ProfileActivity
 import javax.inject.Inject
 
 class MenuFragment : BaseFragment<FragmentMenuBinding, MenuNavigator, MenuViewModel>(),
@@ -59,17 +59,21 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuNavigator, MenuViewMo
         swDarkMode.isEnabled = false
         viewModel.setDarkMode(p1)
         if (p1) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                swDarkMode.isEnabled = true
-            }, 400)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            swDarkMode.isEnabled = true
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            swDarkMode.isEnabled = true
         }
-        else {
-            Handler(Looper.getMainLooper()).postDelayed({
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                swDarkMode.isEnabled = true
-            }, 400)
-        }
+    }
+
+    override fun openMenuProfile() {
+        activity?.startActivity(ProfileActivity.getIntent(activity!!))
+    }
+
+    override fun signOut() {
+        activity?.startActivity(LoginActivity.getIntent(activity!!))
+        activity?.onBackPressed()
     }
 
 }
