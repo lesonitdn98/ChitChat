@@ -4,6 +4,7 @@
     package="me.lesonnnn.chitchat">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".ChitChatApp"
@@ -40,6 +41,7 @@
         <activity android:name=".ui.register.RegisterActivity"
             android:screenOrientation="portrait"
             android:launchMode = "singleTop" />
+        <activity android:name=".ui.profile.ProfileActivity" />
     </application>
 
 </manifest>

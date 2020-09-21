@@ -14,6 +14,7 @@ import androidx.databinding.ViewDataBinding
 import dagger.android.AndroidInjection
 import me.lesonnnn.chitchat.data.local.prefs.PreferencesHelper
 import me.lesonnnn.chitchat.ui.base.BaseFragment.Callback
+import me.lesonnnn.chitchat.ui.login.LoginActivity
 import me.lesonnnn.chitchat.utils.NetworkUtils
 import javax.inject.Inject
 
@@ -59,6 +60,11 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
                 checkSelfPermission(permission!!) == PackageManager.PERMISSION_GRANTED
     }
 
+    fun openActivityOnTokenExpire() {
+        startActivity(LoginActivity.getIntent(this))
+        finish()
+    }
+
     fun hideKeyboard() {
         val view: View? = this.currentFocus
         if (view != null) {
@@ -67,9 +73,7 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
         }
     }
 
-    fun isNetworkConnected(): Boolean {
-        return NetworkUtils.isNetworkConnected(applicationContext)
-    }
+    fun isNetworkConnected(): Boolean = NetworkUtils.isNetworkConnected(applicationContext)
 
     private fun initThemeMode() {
         if (preferencesHelper.isDarkMode()) {

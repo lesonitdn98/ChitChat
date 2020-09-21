@@ -19,9 +19,13 @@ android {
   }
 
   buildTypes {
+    debug {
+      buildConfigField("String", "BASE_URL", "\"${BASE_URL}\"")
+    }
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      buildConfigField("String", "BASE_URL", "\"${BASE_URL}\"")
     }
   }
 
@@ -49,6 +53,7 @@ dependencies {
   // network
   implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
   implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+  implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
 
   // database
   implementation "androidx.room:room-rxjava3:$roomDatabaseVersion"

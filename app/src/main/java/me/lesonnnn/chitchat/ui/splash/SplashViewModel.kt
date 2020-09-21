@@ -9,4 +9,11 @@ class SplashViewModel constructor(
     schedulerProvider: SchedulerProvider
 ) : BaseViewModel<SplashNavigator>(dataManager, schedulerProvider) {
 
+    fun checkUserAsLogin() {
+        if (dataManager.isUserAsLogin()) {
+            navigator?.openMainActivity()
+        } else {
+            navigator?.openLoginActivity()
+        }
+    }
 }

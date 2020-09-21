@@ -5,8 +5,8 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="backgroundColor">#2D313D</color>
-    <color name="textColorLight">#A6BCD0</color>
-    <color name="textColor">#748A9D</color>
+    <color name="textColorLight">#748A9D</color>
+    <color name="textColor">#A6BCD0</color>
     <color name="green">#7BED8D</color>
     <color name="greenLight">#667BED8D</color>
     <color name="bgInputField">#4E5D6A</color>

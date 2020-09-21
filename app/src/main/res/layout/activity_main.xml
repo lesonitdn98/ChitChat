@@ -24,6 +24,7 @@
             android:id="@+id/appBarMain"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_56sdp"
+            android:transitionName="appBarTransition"
             android:background="@android:color/transparent"
             app:cardUseCompatPadding="false"
             app:elevation="0dp">
