@@ -9,7 +9,7 @@ android {
   buildToolsVersion rootProject.ext.buildToolsVersion
 
   defaultConfig {
-    applicationId "me.lesonnnn.chitchat"
+    applicationId "tech.leson.chitchat"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
@@ -66,12 +66,12 @@ dependencies {
   implementation "com.intuit.sdp:sdp-android:$sdpAndroidVersion"
   implementation "com.intuit.ssp:ssp-android:$sspAndroidVersion"
 
+  // validate phone number
+  implementation "com.googlecode.libphonenumber:libphonenumber:$libphonenumberVersion"
+
   // image
   implementation "com.github.bumptech.glide:glide:$glideVersion"
   implementation "de.hdodenhof:circleimageview:$circleimageviewVersion"
-
-  // parser
-  implementation "com.google.code.gson:gson:$gsonVersion"
 
   // dependency injection
   implementation "com.google.dagger:dagger:$daggerVersion"

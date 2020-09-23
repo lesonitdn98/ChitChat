@@ -16,7 +16,7 @@ buildscript {
 
     // App dependencies
     supportLibraryVersion = '1.2.0'
-    gsonVersion = '2.8.6'
+    libphonenumberVersion = '8.12.10'
     glideVersion = '4.11.0'
     roomDatabaseVersion = '2.3.0-alpha02'
     retrofitVersion = '2.9.0'

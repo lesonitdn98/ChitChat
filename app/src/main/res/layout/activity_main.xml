@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="me.lesonnnn.chitchat.ui.main.MainViewModel" />
+            type="tech.leson.chitchat.ui.main.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

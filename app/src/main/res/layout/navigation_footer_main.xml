@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="me.lesonnnn.chitchat.ui.main.MainViewModel" />
+            type="tech.leson.chitchat.ui.main.MainViewModel" />
     </data>
 
     <com.google.android.material.tabs.TabLayout

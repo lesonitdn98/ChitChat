@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="me.lesonnnn.chitchat.ui.splash.SplashViewModel" />
+            type="tech.leson.chitchat.ui.splash.SplashViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

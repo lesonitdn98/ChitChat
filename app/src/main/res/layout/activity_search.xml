@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="me.lesonnnn.chitchat.ui.search.SearchViewModel" />
+            type="tech.leson.chitchat.ui.search.SearchViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
