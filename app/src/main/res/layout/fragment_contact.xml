@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="me.lesonnnn.chitchat.ui.main.contact.ContactViewModel" />
+            type="tech.leson.chitchat.ui.main.contact.ContactViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

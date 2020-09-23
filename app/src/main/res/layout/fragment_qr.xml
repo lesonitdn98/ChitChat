@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="me.lesonnnn.chitchat.ui.main.qrcode.QRViewModel" />
+            type="tech.leson.chitchat.ui.main.qrcode.QRViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
