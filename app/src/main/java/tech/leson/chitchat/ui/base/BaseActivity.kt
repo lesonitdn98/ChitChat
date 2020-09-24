@@ -73,6 +73,14 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
         }
     }
 
+    open fun showKeyboard() {
+        val view: View? = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        }
+    }
+
     fun isNetworkConnected(): Boolean = NetworkUtils.isNetworkConnected(applicationContext)
 
     private fun initThemeMode() {

@@ -2,6 +2,7 @@ package tech.leson.chitchat.di.module
 
 import android.app.Application
 import android.content.Context
+import com.bumptech.glide.Glide
 import dagger.Module
 import dagger.Provides
 import tech.leson.chitchat.BuildConfig

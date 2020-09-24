@@ -19,7 +19,7 @@ class MainViewModel constructor(
             TAB.TAB_CONTACT -> navigator?.openAddContactView()
             TAB.TAB_QR_CODE -> navigator?.openScanView()
             TAB.TAB_GROUP -> TODO()
-            TAB.TAB_PROFILE -> {}
+            TAB.TAB_PROFILE -> navigator?.openDialogUpdate()
         }
     }
 }

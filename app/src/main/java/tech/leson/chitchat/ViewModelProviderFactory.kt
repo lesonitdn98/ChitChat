@@ -6,6 +6,7 @@ import tech.leson.chitchat.data.DataManager
 import tech.leson.chitchat.ui.login.LoginViewModel
 import tech.leson.chitchat.ui.main.MainViewModel
 import tech.leson.chitchat.ui.main.contact.ContactViewModel
+import tech.leson.chitchat.ui.main.dialog.UpdateDialogViewModel
 import tech.leson.chitchat.ui.main.group.GroupViewModel
 import tech.leson.chitchat.ui.main.home.HomeViewModel
 import tech.leson.chitchat.ui.main.profile.ProfileViewModel
@@ -13,6 +14,8 @@ import tech.leson.chitchat.ui.main.qrcode.QRViewModel
 import tech.leson.chitchat.ui.register.RegisterViewModel
 import tech.leson.chitchat.ui.search.SearchViewModel
 import tech.leson.chitchat.ui.splash.SplashViewModel
+import tech.leson.chitchat.ui.update.UpdateViewModel
+import tech.leson.chitchat.ui.update.dialog.AvatarDialogViewModel
 import tech.leson.chitchat.utils.rx.SchedulerProvider
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -58,6 +61,15 @@ class ViewModelProviderFactory @Inject constructor(
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(UpdateViewModel::class.java) -> {
+                UpdateViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(UpdateDialogViewModel::class.java) -> {
+                UpdateDialogViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(AvatarDialogViewModel::class.java) -> {
+                AvatarDialogViewModel(mDataManager, mSchedulerProvider) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
