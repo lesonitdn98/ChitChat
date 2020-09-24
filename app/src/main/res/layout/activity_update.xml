@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="tech.leson.chitchat.ui.update.UpdateViewModel" />
@@ -48,6 +50,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/sf_pro_display_regular"
                             android:textColor="@color/textColor"
+                            android:text="@string/information"
                             android:textSize="@dimen/_16ssp"
                             app:layout_constraintBottom_toBottomOf="@id/btnClose"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +63,7 @@
                             android:layout_height="@dimen/_48sdp"
                             android:background="@drawable/bg_btn_transparent"
                             android:gravity="center"
+                            android:onClick="@{(View) -> viewModel.onClick(View)}"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -72,11 +76,12 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/btnEdit"
+                            android:id="@+id/btnSave"
                             android:layout_width="@dimen/_48sdp"
                             android:layout_height="@dimen/_48sdp"
                             android:background="@drawable/bg_btn_transparent"
                             android:gravity="center"
+                            android:onClick="@{(View) -> viewModel.onClick(View)}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -110,18 +115,19 @@
                         android:layout_height="@dimen/_64sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_20sdp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:onClick="@{(View) -> viewModel.onClick(View)}"
+                        app:layout_constraintBottom_toTopOf="@id/edtFullName"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/edtFullName">
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/avatar"
+                            android:id="@+id/imvAvatar"
                             android:layout_width="@dimen/_64sdp"
                             android:layout_height="@dimen/_64sdp"
                             android:layout_gravity="start"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/avatar_default"/>
+                            android:src="@drawable/avatar_default" />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/btnAvatar"
@@ -129,96 +135,100 @@
                             android:layout_height="@dimen/_20sdp"
                             android:layout_gravity="bottom|end"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/img_camera"/>
+                            android:src="@drawable/img_camera" />
 
                     </FrameLayout>
 
                     <EditText
                         android:id="@+id/edtFullName"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_48sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
                         android:background="@drawable/bg_edt_input"
                         android:fontFamily="@font/sf_pro_display_regular"
                         android:hint="@string/full_name"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="text"
+                        android:text="@{viewModel.user.full_name}"
                         android:paddingStart="@dimen/_10sdp"
                         android:paddingLeft="@dimen/_10sdp"
                         android:paddingEnd="@dimen/_10sdp"
                         android:paddingRight="@dimen/_10sdp"
                         android:textColor="@color/textColor"
                         android:textColorHint="@color/textColorLight"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="@dimen/_13ssp"
                         app:layout_constraintBottom_toTopOf="@id/edtGender"
+                        app:layout_constraintStart_toStartOf="parent"
                         tools:ignore="Autofill" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/edtGender"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_48sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
                         android:background="@drawable/bg_edt_input"
                         android:fontFamily="@font/sf_pro_display_regular"
-                        android:hint="@string/gender"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:gravity="center_vertical"
+                        android:text="@{viewModel.user.gender}"
                         android:paddingStart="@dimen/_10sdp"
                         android:paddingLeft="@dimen/_10sdp"
                         android:paddingEnd="@dimen/_10sdp"
                         android:paddingRight="@dimen/_10sdp"
+                        android:onClick="@{(View) -> viewModel.onClick(View)}"
                         android:textColor="@color/textColor"
-                        android:textColorHint="@color/textColorLight"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="@dimen/_13ssp"
                         app:layout_constraintBottom_toTopOf="@id/frameDob"
+                        app:layout_constraintStart_toStartOf="parent"
                         tools:ignore="Autofill" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/frameDob"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_48sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/edtDob"
+                            android:id="@+id/btnDob"
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_48sdp"
-                            android:gravity="center_vertical"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@drawable/bg_edt_input_left"
                             android:fontFamily="@font/sf_pro_display_regular"
-                            android:text="@string/date_of_birth"
+                            android:gravity="center_vertical"
                             android:paddingStart="@dimen/_10sdp"
                             android:paddingLeft="@dimen/_10sdp"
                             android:paddingEnd="@dimen/_10sdp"
                             android:paddingRight="@dimen/_10sdp"
+                            android:onClick="@{(View) -> viewModel.onClick(View)}"
+                            android:text="@{viewModel.user.dob.day_of_birth}"
+                            android:textColor="@color/textColor"
                             android:textSize="@dimen/_13ssp"
-                            android:textColor="@color/textColorLight"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/stateDob"
-                            android:layout_marginEnd="@dimen/_5sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             tools:ignore="Autofill" />
 
                         <ImageView
                             android:id="@+id/stateDob"
-                            android:layout_width="@dimen/_48sdp"
-                            android:layout_height="@dimen/_48sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/bg_edt_input_right"
-                            android:padding="@dimen/_17sdp"
-                            app:layout_constraintTop_toTopOf="parent"
+                            android:padding="@dimen/_15sdp"
+                            android:onClick="@{(View) -> viewModel.onClick(View)}"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_lock"
                             tools:ignore="ContentDescription" />
 
@@ -227,11 +237,11 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/frameEmail"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_48sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/frameDob">
 
@@ -239,7 +249,8 @@
                         <EditText
                             android:id="@+id/edtEmail"
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_48sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
                             android:background="@drawable/bg_edt_input_left"
                             android:fontFamily="@font/sf_pro_display_regular"
                             android:hint="@string/email"
@@ -249,36 +260,39 @@
                             android:paddingLeft="@dimen/_10sdp"
                             android:paddingEnd="@dimen/_10sdp"
                             android:paddingRight="@dimen/_10sdp"
+                            android:text="@{viewModel.user.email.email_address}"
                             android:textColor="@color/textColor"
-                            android:layout_marginEnd="@dimen/_5sdp"
                             android:textColorHint="@color/textColorLight"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:textSize="@dimen/_13ssp"
                             app:layout_constraintEnd_toStartOf="@id/stateEmail"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             tools:ignore="Autofill" />
 
                         <ImageView
                             android:id="@+id/stateEmail"
-                            android:layout_width="@dimen/_48sdp"
-                            android:layout_height="@dimen/_48sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/bg_edt_input_right"
-                            android:padding="@dimen/_17sdp"
-                            app:layout_constraintTop_toTopOf="parent"
+                            android:padding="@dimen/_15sdp"
+                            android:onClick="@{(View) -> viewModel.onClick(View)}"
                             app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_lock"
                             tools:ignore="ContentDescription" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.core.widget.NestedScrollView
+                    <FrameLayout
                         android:id="@+id/frameBio"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_96sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_height="@dimen/_80sdp"
                         android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
                         android:background="@drawable/bg_edt_input"
+                        android:onClick="@{(View) -> viewModel.onClick(View)}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/frameEmail">
 
@@ -286,21 +300,24 @@
                             android:id="@+id/edtBio"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@android:color/transparent"
                             android:fontFamily="@font/sf_pro_display_regular"
                             android:hint="@string/bio"
                             android:imeOptions="actionDone"
-                            android:background="@android:color/transparent"
-                            android:inputType="text"
-                            android:layout_marginTop="@dimen/_10sdp"
+                            android:inputType="textMultiLine"
+                            android:text="@{viewModel.user.bio}"
+                            android:maxLength="200"
                             android:paddingStart="@dimen/_10sdp"
                             android:paddingLeft="@dimen/_10sdp"
                             android:paddingEnd="@dimen/_10sdp"
                             android:paddingRight="@dimen/_10sdp"
                             android:textColor="@color/textColor"
                             android:textColorHint="@color/textColorLight"
+                            android:textSize="@dimen/_13ssp"
                             tools:ignore="Autofill" />
 
-                    </androidx.core.widget.NestedScrollView>
+                    </FrameLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

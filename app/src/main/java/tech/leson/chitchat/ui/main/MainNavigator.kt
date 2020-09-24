@@ -5,5 +5,6 @@ interface MainNavigator {
     fun openAddContactView()
     fun openScanView()
     fun onTabQRCodeClick()
+    fun openDialogUpdate()
     fun handleError(throwable: Throwable?)
 }

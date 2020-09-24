@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="tech.leson.chitchat.ui.main.dialog.UpdateDialogViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_20sdp"
+            android:background="@color/backgroundColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/updateInformation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/update_information"
+                android:background="@drawable/bg_btn_in_menu"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/textColor"
+                android:gravity="center"
+                android:textSize="@dimen/_13ssp"
+                android:onClick="@{(View) -> viewModel.onClick(View)}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/changeUsername"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/change_username"
+                android:background="@drawable/bg_btn_in_menu"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_13ssp"
+                android:onClick="@{(View) -> viewModel.onClick(View)}"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/updateInformation"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/changePassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/change_password"
+                android:background="@drawable/bg_btn_in_menu"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_13ssp"
+                android:onClick="@{(View) -> viewModel.onClick(View)}"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/changeUsername"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

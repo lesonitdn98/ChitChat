@@ -23,6 +23,7 @@ buildscript {
     dataBindingVersion = '3.1.4'
     sdpAndroidVersion = '1.0.6'
     sspAndroidVersion = '1.0.6'
+    materialdatetimepickerVersion = '4.2.3'
 
     daggerVersion = '2.28.3'
     rxjava3Version = '3.0.6'

@@ -34,4 +34,16 @@
     <string name="invalid_phone_number">Phone number is invalid</string>
     <string name="password_is_empty">Password is empty</string>
     <string name="save">Save</string>
+    <string name="information">Information</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_username">Change Username</string>
+    <string name="update_information">Update Information</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="unknown">Unknown</string>
+    <string name="_public">Public</string>
+    <string name="friends">Friends</string>
+    <string name="only_me">Only me</string>
+    <string name="avatar">Avatar</string>
+    <string name="background">Background</string>
 </resources>

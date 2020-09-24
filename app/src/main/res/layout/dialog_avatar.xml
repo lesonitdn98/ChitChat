@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="tech.leson.chitchat.ui.update.dialog.AvatarDialogViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/titleAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:text="@string/avatar"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/groupAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:layout_constraintTop_toBottomOf="@id/titleAvatar">
+
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/titleBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:text="@string/background"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/groupAvatar" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/bgAlizarin"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_alizarin"
+                app:layout_constraintTop_toBottomOf="@id/titleBackground"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/bgCarrot"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/bgCarrot"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_carrot"
+                app:layout_constraintTop_toBottomOf="@id/titleBackground"
+                app:layout_constraintStart_toEndOf="@id/bgAlizarin"
+                app:layout_constraintEnd_toStartOf="@+id/bgSunFlower"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/bgSunFlower"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_sun_flower"
+                app:layout_constraintTop_toBottomOf="@id/titleBackground"
+                app:layout_constraintStart_toEndOf="@id/bgCarrot"
+                app:layout_constraintEnd_toStartOf="@+id/bgEmerald"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/bgEmerald"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_emerald"
+                app:layout_constraintTop_toBottomOf="@id/titleBackground"
+                app:layout_constraintStart_toEndOf="@id/bgSunFlower"
+                app:layout_constraintEnd_toStartOf="@+id/bgPeterRiver"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/bgPeterRiver"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_peter_river"
+                app:layout_constraintTop_toBottomOf="@id/titleBackground"
+                app:layout_constraintStart_toEndOf="@id/bgEmerald"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

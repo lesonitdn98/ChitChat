@@ -24,6 +24,7 @@ import tech.leson.chitchat.ViewModelProviderFactory
 import tech.leson.chitchat.databinding.ActivityMainBinding
 import tech.leson.chitchat.ui.base.BaseActivity
 import tech.leson.chitchat.ui.main.contact.ContactFragment
+import tech.leson.chitchat.ui.main.dialog.UpdateDialog
 import tech.leson.chitchat.ui.main.group.GroupFragment
 import tech.leson.chitchat.ui.main.home.HomeFragment
 import tech.leson.chitchat.ui.main.profile.ProfileFragment
@@ -175,6 +176,12 @@ class MainActivity :
 
     override fun onTabQRCodeClick() {
         tabMain.getTabAt(2)?.select()
+    }
+
+    override fun openDialogUpdate() {
+        if (supportFragmentManager.findFragmentByTag("Update") == null) {
+            UpdateDialog.getInstance().show(supportFragmentManager, "Update")
+        }
     }
 
     override fun handleError(throwable: Throwable?) {}

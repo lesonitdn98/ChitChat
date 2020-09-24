@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/btnMale"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:gravity="center"
+        android:text="@string/male"
+        android:background="@drawable/bg_btn"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_12sdp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/textColorLight" />
+
+    <TextView
+        android:id="@+id/btnFemale"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:gravity="center"
+        android:text="@string/female"
+        android:background="@drawable/bg_btn"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_12sdp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/textColorLight" />
+
+    <TextView
+        android:id="@+id/btnUnknown"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:gravity="center"
+        android:text="@string/unknown"
+        android:background="@drawable/bg_btn"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_12sdp" />
+
+</LinearLayout>

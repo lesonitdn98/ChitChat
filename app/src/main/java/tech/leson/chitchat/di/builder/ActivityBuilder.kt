@@ -6,14 +6,16 @@ import tech.leson.chitchat.di.module.MainModule
 import tech.leson.chitchat.ui.login.LoginActivity
 import tech.leson.chitchat.ui.main.MainActivity
 import tech.leson.chitchat.ui.main.contact.ContactProvider
+import tech.leson.chitchat.ui.main.dialog.UpdateDialogProvider
 import tech.leson.chitchat.ui.main.group.GroupProvider
 import tech.leson.chitchat.ui.main.home.HomeProvider
 import tech.leson.chitchat.ui.main.profile.ProfileProvider
 import tech.leson.chitchat.ui.main.qrcode.QRProvider
-import tech.leson.chitchat.ui.profile.ProfileActivity
 import tech.leson.chitchat.ui.register.RegisterActivity
 import tech.leson.chitchat.ui.search.SearchActivity
 import tech.leson.chitchat.ui.splash.SplashActivity
+import tech.leson.chitchat.ui.update.UpdateActivity
+import tech.leson.chitchat.ui.update.dialog.AvatarDialogProvider
 
 @Module
 abstract class ActivityBuilder {
@@ -33,7 +35,8 @@ abstract class ActivityBuilder {
             ContactProvider::class,
             GroupProvider::class,
             ProfileProvider::class,
-            QRProvider::class
+            QRProvider::class,
+            UpdateDialogProvider::class,
         ]
     )
     abstract fun bindMainActivity(): MainActivity
@@ -41,7 +44,9 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector
     abstract fun bindSearchActivity(): SearchActivity
 
-    @ContributesAndroidInjector
-    abstract fun bindProfileActivity(): ProfileActivity
+    @ContributesAndroidInjector(
+        modules = [AvatarDialogProvider::class]
+    )
+    abstract fun bindUpdateActivity(): UpdateActivity
 
 }
