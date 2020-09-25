@@ -20,14 +20,14 @@ interface UserRequest {
     fun getUser(@Header("auth-token") token: String): Single<ServerResponse>
 
     @Headers("Content-Type: application/json")
-    @PUT
+    @PUT("/api/user/update")
     fun update(
         @Header("auth-token") token: String,
         @Body updateData: JsonObject,
     ): Single<ServerResponse>
 
     @Headers("Content-Type: application/json")
-    @PUT
+    @PUT("/api/user/password")
     fun changePassword(
         @Header("auth-token") token: String,
         @Body changePasswordData: JsonObject,

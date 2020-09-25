@@ -7,4 +7,7 @@ import tech.leson.chitchat.utils.rx.SchedulerProvider
 class AvatarDialogViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvider) :
     BaseViewModel<AvatarDialogNavigator>(dataManager, schedulerProvider) {
 
+    fun onClickDone() {
+        navigator?.onClickDone()
+    }
 }

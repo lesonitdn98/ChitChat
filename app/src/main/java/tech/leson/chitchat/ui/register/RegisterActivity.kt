@@ -14,6 +14,7 @@ import tech.leson.chitchat.databinding.ActivityRegisterBinding
 import tech.leson.chitchat.ui.base.BaseActivity
 import tech.leson.chitchat.ui.login.LoginActivity
 import tech.leson.chitchat.ui.main.MainActivity
+import tech.leson.chitchat.ui.update.UpdateActivity
 import tech.leson.chitchat.utils.AppUtils
 import tech.leson.chitchat.utils.NetworkUtils
 import javax.inject.Inject
@@ -61,7 +62,7 @@ class RegisterActivity :
 
     override fun onRegisterSuccess() {
         hideKeyboard()
-        startActivity(MainActivity.getIntent(this))
+        startActivity(UpdateActivity.getIntent(this))
         finish()
     }
 

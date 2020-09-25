@@ -22,30 +22,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_64sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
             <TextView
                 android:id="@+id/titleAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:fontFamily="@font/sf_pro_display_medium"
                 android:text="@string/avatar"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/avatar"/>
 
-            <RadioGroup
-                android:id="@+id/groupAvatar"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAvatar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                app:layout_constraintTop_toBottomOf="@id/titleAvatar">
-
-
-            </RadioGroup>
+                app:layout_constraintTop_toBottomOf="@id/titleAvatar"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/titleBackground"
@@ -59,62 +68,33 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/groupAvatar" />
+                app:layout_constraintTop_toBottomOf="@id/rvAvatar" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/bgAlizarin"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg_alizarin"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
                 app:layout_constraintTop_toBottomOf="@id/titleBackground"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/bgCarrot"/>
+                app:layout_constraintStart_toStartOf="parent"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/bgCarrot"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+            <TextView
+                android:id="@+id/changePassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg_carrot"
-                app:layout_constraintTop_toBottomOf="@id/titleBackground"
-                app:layout_constraintStart_toEndOf="@id/bgAlizarin"
-                app:layout_constraintEnd_toStartOf="@+id/bgSunFlower"/>
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/bgSunFlower"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg_sun_flower"
-                app:layout_constraintTop_toBottomOf="@id/titleBackground"
-                app:layout_constraintStart_toEndOf="@id/bgCarrot"
-                app:layout_constraintEnd_toStartOf="@+id/bgEmerald"/>
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/bgEmerald"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg_emerald"
-                app:layout_constraintTop_toBottomOf="@id/titleBackground"
-                app:layout_constraintStart_toEndOf="@id/bgSunFlower"
-                app:layout_constraintEnd_toStartOf="@+id/bgPeterRiver"/>
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/bgPeterRiver"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg_peter_river"
-                app:layout_constraintTop_toBottomOf="@id/titleBackground"
-                app:layout_constraintStart_toEndOf="@id/bgEmerald"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:text="@string/done"
+                android:background="@drawable/bg_btn_in_menu"
+                android:fontFamily="@font/sf_pro_display_medium"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_13ssp"
+                android:onClick="@{() -> viewModel.onClickDone()}"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/rvBackground"
+                app:layout_constraintStart_toStartOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

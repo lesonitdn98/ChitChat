@@ -46,4 +46,5 @@
     <string name="only_me">Only me</string>
     <string name="avatar">Avatar</string>
     <string name="background">Background</string>
+    <string name="done">Done</string>
 </resources>

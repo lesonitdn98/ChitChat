@@ -53,6 +53,7 @@ class ProfileViewModel(dataManager: DataManager, schedulerProvider: SchedulerPro
                 .observeOn(schedulerProvider.ui())
                 .subscribe({
                     setIsLoading(false)
+                    navigator?.setAvatar(it.user.avatar)
                 }) { throwable ->
                     setIsLoading(false)
                     navigator?.getUserFailed(throwable.toString())
