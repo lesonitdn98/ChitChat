@@ -1,5 +1,6 @@
 package tech.leson.chitchat.ui.update
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.WindowManager
@@ -18,10 +19,14 @@ import tech.leson.chitchat.ViewModelProviderFactory
 import tech.leson.chitchat.databinding.ActivityUpdateBinding
 import tech.leson.chitchat.ui.base.BaseActivity
 import tech.leson.chitchat.ui.update.dialog.AvatarDialog
+import tech.leson.chitchat.ui.update.model.UserUpdate
 import tech.leson.chitchat.ui.update.popup.DobStatePopup
 import tech.leson.chitchat.ui.update.popup.EmailStatePopup
 import tech.leson.chitchat.ui.update.popup.GenderPopup
+import tech.leson.chitchat.utils.AppConstants
 import tech.leson.chitchat.utils.NetworkUtils
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -32,7 +37,7 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
         private var instance: Intent? = null
 
         @JvmStatic
-        fun getInstance(context: Context) = instance ?: synchronized(this) {
+        fun getIntent(context: Context) = instance ?: synchronized(this) {
             instance ?: Intent(context, UpdateActivity::class.java).also { instance = it }
         }
     }
@@ -51,6 +56,8 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
 
     @Inject
     lateinit var emailStatePopup: EmailStatePopup
+
+    private var userUpdate = UserUpdate()
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -85,6 +92,12 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
+    override fun updateAvatar(avatar: Int) {
+        Glide.with(this).load(resources.getIdentifier("avatar_$avatar", "drawable", packageName))
+            .centerCrop().into(imvAvatar)
+        userUpdate.avatar = AppConstants.AVATAR_BASE_LINK + "avatar_" + avatar + ".png"
+    }
+
     override fun onAvatarDialog() {
         if (supportFragmentManager.findFragmentByTag("Avatar") == null) {
             AvatarDialog.getInstance().show(supportFragmentManager, "Avatar")
@@ -103,12 +116,13 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
 
     override fun onGenderSelected(genderMode: String) {
         edtGender.text = genderMode
+        userUpdate.gender = genderMode
         genderPopup.dismiss()
     }
 
     override fun onDobClick() {
         val now = Calendar.getInstance()
-        val dpd: DatePickerDialog = DatePickerDialog.newInstance(this@UpdateActivity, 2000, 1, 1)
+        val dpd: DatePickerDialog = DatePickerDialog.newInstance(this@UpdateActivity, 2000, 0, 1)
         dpd.version = DatePickerDialog.Version.VERSION_2
         dpd.maxDate = now
         dpd.accentColor = ContextCompat.getColor(this, R.color.backgroundColor)
@@ -129,12 +143,15 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
         when (state) {
             0 -> {
                 stateDob.setImageResource(R.drawable.ic_lock)
+                userUpdate.dob_state = 0
             }
             1 -> {
                 stateDob.setImageResource(R.drawable.ic_friends)
+                userUpdate.dob_state = 1
             }
             2 -> {
                 stateDob.setImageResource(R.drawable.ic_public)
+                userUpdate.dob_state = 2
             }
         }
         dobStatePopup.dismiss()
@@ -154,12 +171,15 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
         when (state) {
             0 -> {
                 stateDob.setImageResource(R.drawable.ic_lock)
+                userUpdate.email_state = 0
             }
             1 -> {
                 stateDob.setImageResource(R.drawable.ic_friends)
+                userUpdate.email_state = 1
             }
             2 -> {
                 stateDob.setImageResource(R.drawable.ic_public)
+                userUpdate.email_state = 2
             }
         }
         emailStatePopup.dismiss()
@@ -170,14 +190,32 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
         showKeyboard()
     }
 
+    override fun onSave() {
+        userUpdate.full_name = edtFullName.text.toString().trim()
+        userUpdate.email_address = edtEmail.text.toString().trim()
+        userUpdate.bio = edtBio.text.toString().trim()
+        if (NetworkUtils.isNetworkConnected(this)) {
+            viewModel.updateUserInfo(userUpdate)
+        }
+    }
+
     override fun onBack() {
         finish()
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
         val dayOfBirth = StringBuilder()
-        dayOfBirth.append(dayOfMonth).append("-").append(monthOfYear).append("-").append(year)
+        dayOfBirth.append(dayOfMonth).append("-").append(monthOfYear + 1).append("-").append(year)
         btnDob.text = dayOfBirth
+        val f = SimpleDateFormat("dd-MM-yyyy")
+        try {
+            val d = f.parse(dayOfBirth.toString())
+            val milliseconds = d!!.time
+            userUpdate.date_of_birth = milliseconds
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
     }
 
     override fun androidInjector(): AndroidInjector<Any> {

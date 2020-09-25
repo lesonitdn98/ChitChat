@@ -46,7 +46,7 @@ class UpdateDialog :
     }
 
     override fun openUpdateInformation() {
-        activity?.startActivity(UpdateActivity.getInstance(activity!!))
+        activity?.startActivity(UpdateActivity.getIntent(activity!!))
         dismiss()
     }
 

@@ -7,5 +7,7 @@ class AppConstants {
         const val MALE = "Male"
         const val FEMALE = "Female"
         const val UNKNOWN = "Unknown"
+
+        const val AVATAR_BASE_LINK = "https://leson.tech/public/avatar/"
     }
 }

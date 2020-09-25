@@ -4,7 +4,9 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import dagger.android.DispatchingAndroidInjector
+import kotlinx.android.synthetic.main.activity_update.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import tech.leson.chitchat.BR
 import tech.leson.chitchat.R
@@ -48,6 +50,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileNavigator, P
         viewModel.setNavigator(this)
         swDarkMode.setOnCheckedChangeListener(this)
         viewModel.getUserInfo()
+    }
+
+    override fun setAvatar(avatar: String) {
+        if (!avatar.isBlank()) {
+            Glide.with(this).load(viewModel.user.value?.avatar).centerCrop().into(imvAvatarProfile)
+        }
     }
 
     override fun getUserFailed(msg: String) {
