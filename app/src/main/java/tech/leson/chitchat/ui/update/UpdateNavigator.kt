@@ -1,9 +1,11 @@
 package tech.leson.chitchat.ui.update
 
 interface UpdateNavigator {
-    fun getAvatar(avatar: String)
-    fun getUserFailed(msg: String)
+    fun setAvatar(avatar: String)
+    fun onMessage(msg: String)
     fun updateAvatar(avatar: Int)
+    fun setState(email: Int, dob: Int)
+    fun setGender(gender: String)
     fun onAvatarDialog()
     fun onPopupGender()
     fun onGenderSelected(genderMode: String)
@@ -13,6 +15,7 @@ interface UpdateNavigator {
     fun onPopupEmailState()
     fun onEmailStateSelected(state: Int)
     fun onEdtBioFocus()
+    fun updateSuccess()
     fun onSave()
     fun onBack()
 }

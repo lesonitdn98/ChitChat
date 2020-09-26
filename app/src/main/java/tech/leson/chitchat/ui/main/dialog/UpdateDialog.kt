@@ -7,6 +7,7 @@ import tech.leson.chitchat.R
 import tech.leson.chitchat.ViewModelProviderFactory
 import tech.leson.chitchat.databinding.DialogUpdateBinding
 import tech.leson.chitchat.ui.base.BaseFragmentDialog
+import tech.leson.chitchat.ui.main.MainActivity
 import tech.leson.chitchat.ui.update.UpdateActivity
 import javax.inject.Inject
 
@@ -46,7 +47,9 @@ class UpdateDialog :
     }
 
     override fun openUpdateInformation() {
-        activity?.startActivity(UpdateActivity.getIntent(activity!!))
+        val intent = UpdateActivity.getIntent(activity!!)
+        intent.putExtra("activity", MainActivity.ACTIVITY)
+        activity?.startActivityForResult(intent, MainActivity.REQUEST_CODE)
         dismiss()
     }
 

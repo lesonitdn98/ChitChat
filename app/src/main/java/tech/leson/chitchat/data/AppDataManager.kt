@@ -20,6 +20,7 @@ class AppDataManager @Inject constructor(
 
     override fun setUserAsLoggedOut() {
         updateUserInfo("", "", "", "")
+        setUserAsLogin(false)
     }
 
     override fun updateUserInfo(token: String, userId: String, userName: String, avatar: String) {

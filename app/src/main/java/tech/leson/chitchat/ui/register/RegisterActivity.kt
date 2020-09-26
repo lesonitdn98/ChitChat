@@ -25,6 +25,7 @@ class RegisterActivity :
     RegisterNavigator {
 
     companion object {
+        const val ACTIVITY = "register"
         private var instance: Intent? = null
 
         @JvmStatic
@@ -62,7 +63,9 @@ class RegisterActivity :
 
     override fun onRegisterSuccess() {
         hideKeyboard()
-        startActivity(UpdateActivity.getIntent(this))
+        val intent = UpdateActivity.getIntent(this)
+        intent.putExtra("activity", ACTIVITY)
+        startActivity(intent)
         finish()
     }
 

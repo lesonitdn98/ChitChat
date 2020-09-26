@@ -3,6 +3,7 @@ package tech.leson.chitchat.ui.update
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -18,6 +19,8 @@ import tech.leson.chitchat.R
 import tech.leson.chitchat.ViewModelProviderFactory
 import tech.leson.chitchat.databinding.ActivityUpdateBinding
 import tech.leson.chitchat.ui.base.BaseActivity
+import tech.leson.chitchat.ui.main.MainActivity
+import tech.leson.chitchat.ui.register.RegisterActivity
 import tech.leson.chitchat.ui.update.dialog.AvatarDialog
 import tech.leson.chitchat.ui.update.model.UserUpdate
 import tech.leson.chitchat.ui.update.popup.DobStatePopup
@@ -33,7 +36,10 @@ import javax.inject.Inject
 class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, UpdateViewModel>(),
     UpdateNavigator, DatePickerDialog.OnDateSetListener, HasAndroidInjector {
 
+
     companion object {
+        const val RESULT_CODE = 4444
+
         private var instance: Intent? = null
 
         @JvmStatic
@@ -58,6 +64,7 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
     lateinit var emailStatePopup: EmailStatePopup
 
     private var userUpdate = UserUpdate()
+    private var beforeActivity = ""
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -74,21 +81,33 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
     override fun addAnimTransition() {}
 
     override fun init() {
-        viewModel.setNavigator(this)
         if (NetworkUtils.isNetworkConnected(this)) {
             viewModel.getInfoUser()
         } else {
             Toast.makeText(this, getText(R.string.network_not_connected), Toast.LENGTH_SHORT).show()
         }
-    }
+        viewModel.setNavigator(this)
 
-    override fun getAvatar(avatar: String) {
-        if (!avatar.isBlank()) {
-            Glide.with(this).load(viewModel.user.value?.avatar).centerCrop().into(imvAvatar)
+        beforeActivity = intent.getStringExtra("activity")!!
+
+        when (beforeActivity) {
+            MainActivity.ACTIVITY -> {
+                btnClose.visibility = View.VISIBLE
+            }
+            RegisterActivity.ACTIVITY -> {
+                btnClose.visibility = View.INVISIBLE
+            }
         }
     }
 
-    override fun getUserFailed(msg: String) {
+    override fun setAvatar(avatar: String) {
+        if (!avatar.isBlank()) {
+            Glide.with(this).load(viewModel.user.value?.avatar).centerCrop().into(imvAvatar)
+            userUpdate.avatar = avatar
+        }
+    }
+
+    override fun onMessage(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
@@ -98,9 +117,32 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
         userUpdate.avatar = AppConstants.AVATAR_BASE_LINK + "avatar_" + avatar + ".png"
     }
 
+    override fun setState(email: Int, dob: Int) {
+        when (email) {
+            0 -> stateEmail.setImageResource(R.drawable.ic_lock)
+            1 -> stateEmail.setImageResource(R.drawable.ic_friends)
+            2 -> stateEmail.setImageResource(R.drawable.ic_public)
+        }
+        when (dob) {
+            0 -> stateDob.setImageResource(R.drawable.ic_lock)
+            1 -> stateDob.setImageResource(R.drawable.ic_friends)
+            2 -> stateDob.setImageResource(R.drawable.ic_public)
+        }
+    }
+
+    override fun setGender(gender: String) {
+        if (gender.isBlank()) {
+            edtGender.text = resources.getString(R.string.gender)
+        } else {
+            edtGender.text = gender
+        }
+    }
+
     override fun onAvatarDialog() {
+        val avatarDialog  = AvatarDialog.getInstance()
+        avatarDialog.avatar = userUpdate.avatar
         if (supportFragmentManager.findFragmentByTag("Avatar") == null) {
-            AvatarDialog.getInstance().show(supportFragmentManager, "Avatar")
+            avatarDialog.show(supportFragmentManager, "Avatar")
         }
     }
 
@@ -170,15 +212,15 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
     override fun onEmailStateSelected(state: Int) {
         when (state) {
             0 -> {
-                stateDob.setImageResource(R.drawable.ic_lock)
+                stateEmail.setImageResource(R.drawable.ic_lock)
                 userUpdate.email_state = 0
             }
             1 -> {
-                stateDob.setImageResource(R.drawable.ic_friends)
+                stateEmail.setImageResource(R.drawable.ic_friends)
                 userUpdate.email_state = 1
             }
             2 -> {
-                stateDob.setImageResource(R.drawable.ic_public)
+                stateEmail.setImageResource(R.drawable.ic_public)
                 userUpdate.email_state = 2
             }
         }
@@ -188,6 +230,19 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
     override fun onEdtBioFocus() {
         edtBio.requestFocus()
         showKeyboard()
+    }
+
+    override fun updateSuccess() {
+        when (beforeActivity) {
+            MainActivity.ACTIVITY -> {
+                setResult(RESULT_CODE)
+                finish()
+            }
+            RegisterActivity.ACTIVITY -> {
+                startActivity(MainActivity.getIntent(this))
+                finish()
+            }
+        }
     }
 
     override fun onSave() {
