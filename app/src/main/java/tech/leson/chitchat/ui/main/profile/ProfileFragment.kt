@@ -62,6 +62,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileNavigator, P
         Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
     }
 
+    override fun updateData() {
+        viewModel.getUserInfo()
+    }
+
     override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
         swDarkMode.isEnabled = false
         viewModel.setDarkMode(p1)

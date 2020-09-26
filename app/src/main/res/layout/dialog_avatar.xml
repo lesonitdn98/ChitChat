@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/avatar"
+                android:id="@+id/imvAvatarDialog"
                 android:layout_width="@dimen/_64sdp"
                 android:layout_height="@dimen/_64sdp"
                 android:layout_marginTop="@dimen/_20sdp"
@@ -45,7 +45,7 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/avatar"/>
+                app:layout_constraintTop_toBottomOf="@id/imvAvatarDialog"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAvatar"
@@ -87,7 +87,7 @@
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/done"
-                android:background="@drawable/bg_btn_in_menu"
+                android:background="@drawable/bg_btn_border"
                 android:fontFamily="@font/sf_pro_display_medium"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/_13ssp"

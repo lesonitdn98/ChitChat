@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.transition.Explode
 import android.view.View
 import android.view.Window
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +31,7 @@ import tech.leson.chitchat.ui.main.home.HomeFragment
 import tech.leson.chitchat.ui.main.profile.ProfileFragment
 import tech.leson.chitchat.ui.main.qrcode.QRFragment
 import tech.leson.chitchat.ui.search.SearchActivity
+import tech.leson.chitchat.ui.update.UpdateActivity
 import tech.leson.chitchat.utils.AppUtils.Companion.delayBtnOnClick
 import javax.inject.Inject
 
@@ -38,7 +40,15 @@ class MainActivity :
     BaseActivity<ActivityMainBinding, MainNavigator, MainViewModel>(),
     MainNavigator, HasAndroidInjector {
 
+    private val mHomeFragment = HomeFragment.getInstance()
+    private val mContactFragment = ContactFragment.getInstance()
+    private val mQRFragment = QRFragment.getInstance()
+    private val mGroupFragment = GroupFragment.getInstance()
+    private val mProfileFragment = ProfileFragment.getInstance()
+
     companion object {
+        const val ACTIVITY = "main"
+        const val REQUEST_CODE = 1111
         var tabCurrent = TAB.TAB_HOME
         private var instance: Intent? = null
 
@@ -82,11 +92,11 @@ class MainActivity :
     @Suppress("DEPRECATION")
     override fun init() {
         mTabs = ArrayList()
-        mTabs.add(HomeFragment.getInstance())
-        mTabs.add(ContactFragment.getInstance())
-        mTabs.add(QRFragment.getInstance())
-        mTabs.add(GroupFragment.getInstance())
-        mTabs.add(ProfileFragment.getInstance())
+        mTabs.add(mHomeFragment)
+        mTabs.add(mContactFragment)
+        mTabs.add(mQRFragment)
+        mTabs.add(mGroupFragment)
+        mTabs.add(mProfileFragment)
 
         mainTabAdapter.mTabs = mTabs
         viewTabs.orientation = ORIENTATION_HORIZONTAL
@@ -165,6 +175,10 @@ class MainActivity :
         tabMain.getTabAt(0)?.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
     }
 
+    override fun getUserFailed(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
     override fun openSearchView() {
         startActivity(SearchActivity.getIntent(this))
         delayBtnOnClick(btnAppBar)
@@ -194,6 +208,15 @@ class MainActivity :
         with(window) {
             requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
             enterTransition = Explode()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == UpdateActivity.RESULT_CODE) {
+                mProfileFragment.updateData()
+            }
         }
     }
 }

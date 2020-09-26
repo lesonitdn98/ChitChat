@@ -6,7 +6,7 @@ import tech.leson.chitchat.utils.rx.SchedulerProvider
 
 class MainViewModel constructor(
     dataManager: DataManager,
-    schedulerProvider: SchedulerProvider
+    schedulerProvider: SchedulerProvider,
 ) : BaseViewModel<MainNavigator>(dataManager, schedulerProvider) {
 
     fun onTabQRClick() {
