@@ -127,24 +127,25 @@
                         android:layout_marginBottom="@dimen/_20sdp"
                         android:background="@drawable/bg_btn_corner"
                         android:orientation="horizontal"
+                        android:elevation="@dimen/_10sdp"
                         android:onClick="@{(View) -> viewModel.onClick(View)}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
 
                         <ImageView
-                            android:id="@+id/imvBtnLogin"
+                            android:id="@+id/imvBtnCrAccount"
                             android:layout_width="@dimen/_10sdp"
                             android:layout_height="@dimen/_10sdp"
                             android:layout_marginEnd="@dimen/_5sdp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/tvBtnLogin"
+                            app:layout_constraintEnd_toStartOf="@+id/tvBtnCrAccount"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_btn_confirm"
                             tools:ignore="ContentDescription" />
 
                         <TextView
-                            android:id="@+id/tvBtnLogin"
+                            android:id="@+id/tvBtnCrAccount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -188,6 +189,7 @@
             <androidx.core.widget.ContentLoadingProgressBar
                 android:id="@+id/address_looking_up"
                 style="?android:attr/progressBarStyleLarge"
+                android:indeterminateDrawable="@drawable/custom_progressbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />

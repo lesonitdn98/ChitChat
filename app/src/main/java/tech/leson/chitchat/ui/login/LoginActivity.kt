@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.transition.Explode
 import android.view.Window
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
@@ -62,6 +63,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginNavigator, LoginVi
     }
 
     override fun init() {
+        imvBtnLogin.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_left_to_right_arrow))
     }
 
     override fun login() {

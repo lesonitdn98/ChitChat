@@ -108,6 +108,7 @@
                         android:layout_marginEnd="@dimen/_15sdp"
                         android:layout_marginBottom="@dimen/_20sdp"
                         android:background="@drawable/bg_btn_corner"
+                        android:elevation="@dimen/_10sdp"
                         android:onClick="@{() -> viewModel.loginCommit()}"
                         android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -184,6 +185,7 @@
             <androidx.core.widget.ContentLoadingProgressBar
                 android:id="@+id/address_looking_up"
                 style="?android:attr/progressBarStyleLarge"
+                android:indeterminateDrawable="@drawable/custom_progressbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center" />

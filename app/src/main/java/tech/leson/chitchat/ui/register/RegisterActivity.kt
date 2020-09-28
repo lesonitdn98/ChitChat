@@ -3,6 +3,9 @@ package tech.leson.chitchat.ui.register
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.transition.Explode
+import android.view.Window
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.DispatchingAndroidInjector
@@ -13,7 +16,6 @@ import tech.leson.chitchat.ViewModelProviderFactory
 import tech.leson.chitchat.databinding.ActivityRegisterBinding
 import tech.leson.chitchat.ui.base.BaseActivity
 import tech.leson.chitchat.ui.login.LoginActivity
-import tech.leson.chitchat.ui.main.MainActivity
 import tech.leson.chitchat.ui.update.UpdateActivity
 import tech.leson.chitchat.utils.AppUtils
 import tech.leson.chitchat.utils.NetworkUtils
@@ -57,9 +59,17 @@ class RegisterActivity :
         viewModel.setNavigator(this)
     }
 
-    override fun addAnimTransition() {}
+    override fun addAnimTransition() {
+        with(window) {
+            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+            enterTransition = Explode()
+        }
+    }
 
-    override fun init() {}
+    override fun init() {
+        imvBtnCrAccount.startAnimation(AnimationUtils.loadAnimation(this,
+            R.anim.anim_left_to_right_arrow))
+    }
 
     override fun onRegisterSuccess() {
         hideKeyboard()

@@ -43,6 +43,10 @@
             android:launchMode = "singleTop" />
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.update.UpdateActivity" />
+        <activity android:name=".ui.username.UsernameActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.password.PasswordActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -8,7 +8,9 @@ import tech.leson.chitchat.ViewModelProviderFactory
 import tech.leson.chitchat.databinding.DialogUpdateBinding
 import tech.leson.chitchat.ui.base.BaseFragmentDialog
 import tech.leson.chitchat.ui.main.MainActivity
+import tech.leson.chitchat.ui.password.PasswordActivity
 import tech.leson.chitchat.ui.update.UpdateActivity
+import tech.leson.chitchat.ui.username.UsernameActivity
 import javax.inject.Inject
 
 class UpdateDialog :
@@ -54,10 +56,12 @@ class UpdateDialog :
     }
 
     override fun openChangeUsername() {
+        activity?.startActivityForResult(UsernameActivity.getIntent(activity!!), MainActivity.REQUEST_CODE)
         dismiss()
     }
 
     override fun openChangePassword() {
+        activity?.startActivity(PasswordActivity.getIntent(activity!!))
         dismiss()
     }
 }
