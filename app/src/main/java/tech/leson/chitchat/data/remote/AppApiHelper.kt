@@ -18,6 +18,11 @@ class AppApiHelper @Inject constructor(private val userRequest: UserRequest) : A
     override fun update(token: String, updateData: JsonObject): Single<ServerResponse> =
         userRequest.update(token, updateData)
 
+    override fun changeUsername(
+        token: String,
+        changeUsernameData: JsonObject,
+    ): Single<ServerResponse> = userRequest.changeUsername(token, changeUsernameData)
+
     override fun changePassword(
         token: String,
         changePasswordData: JsonObject,

@@ -2,8 +2,8 @@ package tech.leson.chitchat.data.model.api.request
 
 import com.google.gson.JsonObject
 import io.reactivex.rxjava3.core.Single
-import tech.leson.chitchat.data.model.api.response.ServerResponse
 import retrofit2.http.*
+import tech.leson.chitchat.data.model.api.response.ServerResponse
 
 interface UserRequest {
 
@@ -24,6 +24,13 @@ interface UserRequest {
     fun update(
         @Header("auth-token") token: String,
         @Body updateData: JsonObject,
+    ): Single<ServerResponse>
+
+    @Headers("Content-Type: application/json")
+    @PUT("/api/user/username")
+    fun changeUsername(
+        @Header("auth-token") token: String,
+        @Body changeUsernameData: JsonObject,
     ): Single<ServerResponse>
 
     @Headers("Content-Type: application/json")

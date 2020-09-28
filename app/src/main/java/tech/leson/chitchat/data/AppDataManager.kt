@@ -40,6 +40,11 @@ class AppDataManager @Inject constructor(
     override fun update(token: String, updateData: JsonObject): Single<ServerResponse> =
         mApiHelper.update(token, updateData)
 
+    override fun changeUsername(
+        token: String,
+        changeUsernameData: JsonObject,
+    ): Single<ServerResponse> = mApiHelper.changeUsername(token, changeUsernameData)
+
     override fun changePassword(
         token: String,
         changePasswordData: JsonObject,

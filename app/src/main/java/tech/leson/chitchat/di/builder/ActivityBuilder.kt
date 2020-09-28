@@ -11,11 +11,13 @@ import tech.leson.chitchat.ui.main.group.GroupProvider
 import tech.leson.chitchat.ui.main.home.HomeProvider
 import tech.leson.chitchat.ui.main.profile.ProfileProvider
 import tech.leson.chitchat.ui.main.qrcode.QRProvider
+import tech.leson.chitchat.ui.password.PasswordActivity
 import tech.leson.chitchat.ui.register.RegisterActivity
 import tech.leson.chitchat.ui.search.SearchActivity
 import tech.leson.chitchat.ui.splash.SplashActivity
 import tech.leson.chitchat.ui.update.UpdateActivity
 import tech.leson.chitchat.ui.update.dialog.AvatarDialogProvider
+import tech.leson.chitchat.ui.username.UsernameActivity
 
 @Module
 abstract class ActivityBuilder {
@@ -48,5 +50,11 @@ abstract class ActivityBuilder {
         modules = [AvatarDialogProvider::class]
     )
     abstract fun bindUpdateActivity(): UpdateActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindUsernameActivity(): UsernameActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindPasswordActivity(): PasswordActivity
 
 }

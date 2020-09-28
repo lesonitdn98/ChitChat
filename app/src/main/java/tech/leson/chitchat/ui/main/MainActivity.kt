@@ -32,6 +32,7 @@ import tech.leson.chitchat.ui.main.profile.ProfileFragment
 import tech.leson.chitchat.ui.main.qrcode.QRFragment
 import tech.leson.chitchat.ui.search.SearchActivity
 import tech.leson.chitchat.ui.update.UpdateActivity
+import tech.leson.chitchat.ui.username.UsernameActivity
 import tech.leson.chitchat.utils.AppUtils.Companion.delayBtnOnClick
 import javax.inject.Inject
 
@@ -214,7 +215,7 @@ class MainActivity :
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE) {
-            if (resultCode == UpdateActivity.RESULT_CODE) {
+            if (resultCode == UpdateActivity.RESULT_CODE || resultCode == UsernameActivity.RESULT_CODE) {
                 mProfileFragment.updateData()
             }
         }

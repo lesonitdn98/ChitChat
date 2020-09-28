@@ -304,6 +304,7 @@
             <androidx.core.widget.ContentLoadingProgressBar
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
+                android:indeterminateDrawable="@drawable/custom_progressbar"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
 

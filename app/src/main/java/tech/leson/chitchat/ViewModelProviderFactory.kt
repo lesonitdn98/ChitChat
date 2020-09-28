@@ -11,11 +11,13 @@ import tech.leson.chitchat.ui.main.group.GroupViewModel
 import tech.leson.chitchat.ui.main.home.HomeViewModel
 import tech.leson.chitchat.ui.main.profile.ProfileViewModel
 import tech.leson.chitchat.ui.main.qrcode.QRViewModel
+import tech.leson.chitchat.ui.password.PasswordViewModel
 import tech.leson.chitchat.ui.register.RegisterViewModel
 import tech.leson.chitchat.ui.search.SearchViewModel
 import tech.leson.chitchat.ui.splash.SplashViewModel
 import tech.leson.chitchat.ui.update.UpdateViewModel
 import tech.leson.chitchat.ui.update.dialog.AvatarDialogViewModel
+import tech.leson.chitchat.ui.username.UsernameViewModel
 import tech.leson.chitchat.utils.rx.SchedulerProvider
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -70,6 +72,12 @@ class ViewModelProviderFactory @Inject constructor(
             }
             modelClass.isAssignableFrom(AvatarDialogViewModel::class.java) -> {
                 AvatarDialogViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(UsernameViewModel::class.java) -> {
+                UsernameViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(PasswordViewModel::class.java) -> {
+                PasswordViewModel(mDataManager, mSchedulerProvider) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -14,6 +14,8 @@ interface ApiHelper {
 
     fun update(token: String, updateData: JsonObject): Single<ServerResponse>
 
+    fun changeUsername(token: String, changeUsernameData: JsonObject): Single<ServerResponse>
+
     fun changePassword(token: String, changePasswordData: JsonObject): Single<ServerResponse>
 
     fun logout(token: String): Single<ServerResponse>
