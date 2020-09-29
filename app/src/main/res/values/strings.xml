@@ -47,7 +47,7 @@
     <string name="avatar">Avatar</string>
     <string name="background">Background</string>
     <string name="done">Done</string>
-    <string name="digits">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890</string>
+    <string name="digits">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="retype_password">Retype Password</string>

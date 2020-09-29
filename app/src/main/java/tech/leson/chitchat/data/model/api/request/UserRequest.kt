@@ -44,4 +44,17 @@ interface UserRequest {
     @POST("/api/user/logout")
     fun logout(@Header("auth-token") token: String): Single<ServerResponse>
 
+    @Headers("Content-Type: application/json")
+    @POST("api/user/search")
+    fun search(
+        @Header("auth-token") token: String,
+        @Body searchData: JsonObject,
+    ): Single<ServerResponse>
+
+    @Headers("Content-Type: application/json")
+    @GET("api/user/{username}")
+    fun getUserByUsername(
+        @Header("auth-token") token: String,
+        @Path("username") username: String,
+    ): Single<ServerResponse>
 }

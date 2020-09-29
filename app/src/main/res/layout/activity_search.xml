@@ -12,147 +12,169 @@
             type="tech.leson.chitchat.ui.search.SearchViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/backgroundColor">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarSearch"
-            style="@style/CustomCardViewStyleMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/backgroundColor"
-            android:minHeight="@dimen/_48sdp"
-            android:transitionName="appBarTransition"
-            app:cardUseCompatPadding="false"
-            app:elevation="0dp">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_104sdp"
-                app:backgroundTint="@color/backgroundColor"
-                app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
-                app:toolbarId="@+id/toolbar">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvAppBarSearch"
-                    style="@style/CustomCardViewStyleMain"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/backgroundColor"
-                    app:cardElevation="@dimen/_4sdp"
-                    app:cardUseCompatPadding="false">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/tvTitleSearch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/sf_pro_display_regular"
-                            android:text="@string/search"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/_20ssp"
-                            app:layout_constraintBottom_toBottomOf="@id/btnClose"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <LinearLayout
-                            android:id="@+id/btnClose"
-                            android:layout_width="@dimen/_48sdp"
-                            android:layout_height="@dimen/_48sdp"
-                            android:background="@drawable/bg_btn_transparent"
-                            android:gravity="center"
-                            android:onClick="@{() -> viewModel.closeSearch()}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_back"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-
-                        <EditText
-                            android:id="@+id/edtSearch"
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/_48sdp"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_marginEnd="0dp"
-                            android:background="@color/backgroundColor"
-                            android:fontFamily="@font/sf_pro_display_medium"
-                            android:hint="@string/what_are_you_searching_for"
-                            android:imeOptions="actionSearch"
-                            android:inputType="textCapWords"
-                            android:textColor="@color/textColor"
-                            android:textColorHint="@color/textColorLight"
-                            android:textSize="@dimen/_13ssp"
-                            app:boxBackgroundColor="@color/backgroundColor"
-                            app:boxStrokeColor="@color/backgroundColor"
-                            app:boxStrokeWidth="0dp"
-                            app:layout_constraintEnd_toStartOf="@id/btnSearch"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/btnClose"
-                            tools:ignore="Autofill" />
-
-                        <LinearLayout
-                            android:id="@+id/btnSearch"
-                            android:layout_width="@dimen/_48sdp"
-                            android:layout_height="@dimen/_48sdp"
-                            android:background="@drawable/bg_btn_transparent"
-                            android:gravity="center"
-                            android:onClick="@{() -> viewModel.search()}"
-                            app:layout_constraintBottom_toBottomOf="@id/edtSearch"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/edtSearch">
-
-
-                            <ImageView
-                                android:id="@+id/imvIconSearch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/_15sdp"
-                                android:transitionName="btnAppBarTransition"
-                                app:srcCompat="@drawable/ic_search"
-                                tools:ignore="ContentDescription" />
-
-                        </LinearLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
-            android:transitionName="contentTransition"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:background="@color/backgroundColor">
 
-            <androidx.core.widget.NestedScrollView
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarSearch"
+                style="@style/CustomCardViewStyleMain"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="@color/backgroundColor"
+                android:minHeight="@dimen/_48sdp"
+                android:transitionName="appBarTransition"
+                app:cardUseCompatPadding="false"
+                app:elevation="0dp">
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="@dimen/_104sdp"
+                    app:backgroundTint="@color/backgroundColor"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:expandedTitleMarginEnd="64dp"
+                    app:expandedTitleMarginStart="48dp"
+                    app:toolbarId="@+id/toolbar">
 
-            </androidx.core.widget.NestedScrollView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cvAppBarSearch"
+                        style="@style/CustomCardViewStyleMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/backgroundColor"
+                        app:cardElevation="@dimen/_4sdp"
+                        app:cardUseCompatPadding="false">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                            <TextView
+                                android:id="@+id/tvTitleSearch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sf_pro_display_regular"
+                                android:text="@string/search"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/_20ssp"
+                                app:layout_constraintBottom_toBottomOf="@id/btnClose"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <LinearLayout
+                                android:id="@+id/btnClose"
+                                android:layout_width="@dimen/_48sdp"
+                                android:layout_height="@dimen/_48sdp"
+                                android:background="@drawable/bg_btn_transparent"
+                                android:gravity="center"
+                                android:onClick="@{(View) -> viewModel.onClick(View)}"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:srcCompat="@drawable/ic_back"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+
+                            <EditText
+                                android:id="@+id/edtSearch"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_48sdp"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_marginEnd="0dp"
+                                android:background="@color/backgroundColor"
+                                android:fontFamily="@font/sf_pro_display_medium"
+                                android:hint="@string/what_are_you_searching_for"
+                                android:imeOptions="actionDone"
+                                android:inputType="text"
+                                android:textColor="@color/textColor"
+                                android:textColorHint="@color/textColorLight"
+                                android:textSize="@dimen/_13ssp"
+                                app:boxBackgroundColor="@color/backgroundColor"
+                                app:boxStrokeColor="@color/backgroundColor"
+                                app:boxStrokeWidth="0dp"
+                                app:layout_constraintEnd_toStartOf="@id/btnSearch"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/btnClose"
+                                tools:ignore="Autofill" />
+
+                            <LinearLayout
+                                android:id="@+id/btnSearch"
+                                android:layout_width="@dimen/_48sdp"
+                                android:layout_height="@dimen/_48sdp"
+                                android:background="@drawable/bg_btn_transparent"
+                                android:gravity="center"
+                                android:onClick="@{(View) -> viewModel.onClick(View)}"
+                                app:layout_constraintBottom_toBottomOf="@id/edtSearch"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/edtSearch">
+
+
+                                <ImageView
+                                    android:id="@+id/imvIconSearch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/_15sdp"
+                                    android:transitionName="btnAppBarTransition"
+                                    app:srcCompat="@drawable/ic_search"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/backgroundColor"
+                android:transitionName="contentTransition"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvUsers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </androidx.core.widget.NestedScrollView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/loading"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}">
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/address_looking_up"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateDrawable="@drawable/custom_progressbar" />
+        </FrameLayout>
+
+    </FrameLayout>
 
 </layout>

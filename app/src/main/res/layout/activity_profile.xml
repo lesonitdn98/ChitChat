@@ -71,24 +71,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/btnEdit"
-                        android:layout_width="@dimen/_48sdp"
-                        android:layout_height="@dimen/_48sdp"
-                        android:background="@drawable/bg_btn_transparent"
-                        android:gravity="center"
-                        android:onClick="@{() -> viewModel.onClickEdit()}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_edit"
-                            tools:ignore="ContentDescription" />
-
-                    </LinearLayout>
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -298,8 +280,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:background="@color/backgroundColor">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.core.widget.ContentLoadingProgressBar
                 style="?android:attr/progressBarStyleLarge"

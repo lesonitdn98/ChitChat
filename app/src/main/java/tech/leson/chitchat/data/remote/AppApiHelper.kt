@@ -30,4 +30,10 @@ class AppApiHelper @Inject constructor(private val userRequest: UserRequest) : A
 
     override fun logout(token: String): Single<ServerResponse> = userRequest.logout(token)
 
+    override fun search(token: String, searchData: JsonObject): Single<ServerResponse> =
+        userRequest.search(token, searchData)
+
+    override fun getUserByUsername(token: String, username: String): Single<ServerResponse> =
+        userRequest.getUserByUsername(token, username)
+
 }

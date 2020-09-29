@@ -20,4 +20,8 @@ interface ApiHelper {
 
     fun logout(token: String): Single<ServerResponse>
 
+    fun search(token: String, searchData: JsonObject): Single<ServerResponse>
+
+    fun getUserByUsername(token: String, username: String): Single<ServerResponse>
+
 }

@@ -15,10 +15,10 @@ class MainViewModel constructor(
 
     fun onBtnAppBarClick() {
         when (MainActivity.tabCurrent) {
-            TAB.TAB_HOME -> navigator?.openSearchView()
-            TAB.TAB_CONTACT -> navigator?.openAddContactView()
+            TAB.TAB_HOME -> {}
+            TAB.TAB_CONTACT -> navigator?.openSearchView()
             TAB.TAB_QR_CODE -> navigator?.openScanView()
-            TAB.TAB_GROUP -> TODO()
+            TAB.TAB_GROUP -> {}
             TAB.TAB_PROFILE -> navigator?.openDialogUpdate()
         }
     }

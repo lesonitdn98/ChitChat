@@ -34,6 +34,7 @@
             android:layout_height="@dimen/_48sdp"
             android:background="@drawable/bg_btn_transparent"
             android:gravity="center"
+            android:visibility="invisible"
             android:onClick="@{() -> viewModel.onBtnAppBarClick()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
