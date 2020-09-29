@@ -52,6 +52,12 @@ class AppDataManager @Inject constructor(
 
     override fun logout(token: String): Single<ServerResponse> = mApiHelper.logout(token)
 
+    override fun search(token: String, searchData: JsonObject): Single<ServerResponse> =
+        mApiHelper.search(token, searchData)
+
+    override fun getUserByUsername(token: String, username: String): Single<ServerResponse> =
+        mApiHelper.getUserByUsername(token, username)
+
     override fun isDarkMode(): Boolean = mPreferencesHelper.isDarkMode()
 
     override fun setDarkMode(mode: Boolean) {

@@ -47,7 +47,6 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileNavigator, P
 
     override fun init() {
         viewModel.setNavigator(this)
-        viewModel.getUserInfo()
     }
 
     override fun onBack() {

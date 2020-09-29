@@ -11,7 +11,7 @@ class ProfileViewModel(dataManager: DataManager, schedulerProvider: SchedulerPro
 
     val user: MutableLiveData<UserResponse> = MutableLiveData()
 
-    fun getUserInfo() {
+    fun getUserInfo(username: String) {
         setIsLoading(true)
         compositeDisposable.add(
             dataManager.getUser(dataManager.getAuthToken())

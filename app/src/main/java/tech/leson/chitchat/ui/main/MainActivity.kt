@@ -86,7 +86,7 @@ class MainActivity :
         super.onCreate(savedInstanceState)
         viewModel.setNavigator(this)
         btnIconAppBar.setImageResource(R.drawable.ic_search)
-        btnAppBar.visibility = View.VISIBLE
+        btnAppBar.visibility = View.INVISIBLE
     }
 
 
@@ -134,13 +134,12 @@ class MainActivity :
                     0 -> {
                         tabCurrent = TAB.TAB_HOME
                         tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
-                        btnIconAppBar.setImageResource(R.drawable.ic_search)
-                        btnAppBar.visibility = View.VISIBLE
+                        btnAppBar.visibility = View.INVISIBLE
                     }
                     1 -> {
                         tabCurrent = TAB.TAB_CONTACT
                         tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
-                        btnIconAppBar.setImageResource(R.drawable.ic_add_contact)
+                        btnIconAppBar.setImageResource(R.drawable.ic_search)
                         btnAppBar.visibility = View.VISIBLE
                     }
                     2 -> {
@@ -184,8 +183,6 @@ class MainActivity :
         startActivity(SearchActivity.getIntent(this))
         delayBtnOnClick(btnAppBar)
     }
-
-    override fun openAddContactView() {}
 
     override fun openScanView() {}
 

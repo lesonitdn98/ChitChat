@@ -3,6 +3,7 @@ package tech.leson.chitchat.di.builder
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import tech.leson.chitchat.di.module.MainModule
+import tech.leson.chitchat.di.module.SearchModule
 import tech.leson.chitchat.ui.login.LoginActivity
 import tech.leson.chitchat.ui.main.MainActivity
 import tech.leson.chitchat.ui.main.contact.ContactProvider
@@ -32,7 +33,8 @@ abstract class ActivityBuilder {
     abstract fun bindRegisterActivity(): RegisterActivity
 
     @ContributesAndroidInjector(
-        modules = [MainModule::class,
+        modules = [
+            MainModule::class,
             HomeProvider::class,
             ContactProvider::class,
             GroupProvider::class,
@@ -43,7 +45,7 @@ abstract class ActivityBuilder {
     )
     abstract fun bindMainActivity(): MainActivity
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [SearchModule::class])
     abstract fun bindSearchActivity(): SearchActivity
 
     @ContributesAndroidInjector(
