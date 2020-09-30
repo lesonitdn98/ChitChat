@@ -74,18 +74,6 @@ abstract class BaseDialog : DialogFragment() {
         }
     }
 
-    fun hideLoading() {
-        if (mActivity != null) {
-            mActivity?.hideLoading()
-        }
-    }
-
     val isNetworkConnected: Boolean
         get() = mActivity != null && mActivity!!.isNetworkConnected()
-
-    fun showLoading() {
-        if (mActivity != null) {
-            mActivity?.showLoading()
-        }
-    }
 }

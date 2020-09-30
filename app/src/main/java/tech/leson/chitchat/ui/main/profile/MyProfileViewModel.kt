@@ -11,7 +11,7 @@ import tech.leson.chitchat.ui.base.BaseViewModel
 import tech.leson.chitchat.utils.StringUtils
 import tech.leson.chitchat.utils.rx.SchedulerProvider
 
-class ProfileViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvider) :
+class MyProfileViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvider) :
     BaseViewModel<ProfileNavigator>(dataManager, schedulerProvider) {
 
     var isDarkMode: MutableLiveData<Boolean> = MutableLiveData(dataManager.isDarkMode())

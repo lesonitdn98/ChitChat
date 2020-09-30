@@ -13,6 +13,7 @@ import tech.leson.chitchat.ui.main.home.HomeProvider
 import tech.leson.chitchat.ui.main.profile.ProfileProvider
 import tech.leson.chitchat.ui.main.qrcode.QRProvider
 import tech.leson.chitchat.ui.password.PasswordActivity
+import tech.leson.chitchat.ui.profile.ProfileActivity
 import tech.leson.chitchat.ui.register.RegisterActivity
 import tech.leson.chitchat.ui.search.SearchActivity
 import tech.leson.chitchat.ui.splash.SplashActivity
@@ -58,5 +59,8 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector
     abstract fun bindPasswordActivity(): PasswordActivity
+
+    @ContributesAndroidInjector
+    abstract fun bindProfileActivity(): ProfileActivity
 
 }

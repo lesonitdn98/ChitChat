@@ -45,8 +45,6 @@ class PasswordActivity :
             ).get(PasswordViewModel::class.java)
         }
 
-    override fun addAnimTransition() {}
-
     override fun init() {
         viewModel.setNavigator(this)
     }

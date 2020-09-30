@@ -48,6 +48,4 @@ class SplashActivity :
         viewModel.checkUserAsLogin()
     }
 
-    override fun addAnimTransition() {}
-
 }

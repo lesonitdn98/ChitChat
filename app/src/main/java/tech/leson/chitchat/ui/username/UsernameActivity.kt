@@ -46,8 +46,6 @@ class UsernameActivity :
             ).get(UsernameViewModel::class.java)
         }
 
-    override fun addAnimTransition() {}
-
     override fun init() {
         viewModel.setNavigator(this)
     }

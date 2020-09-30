@@ -3,8 +3,6 @@ package tech.leson.chitchat.ui.search
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.transition.Explode
-import android.view.Window
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,13 +60,6 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, SearchNavigator, Sear
     override fun init() {
         rvUsers.layoutManager = LinearLayoutManager(this)
         rvUsers.adapter = searchAdapter
-    }
-
-    override fun addAnimTransition() {
-        with(window) {
-            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-            enterTransition = Explode()
-        }
     }
 
     override fun onSearch() {

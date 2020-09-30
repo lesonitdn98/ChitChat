@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="tech.leson.chitchat.ui.main.profile.ProfileViewModel" />
+            type="tech.leson.chitchat.ui.main.profile.MyProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
