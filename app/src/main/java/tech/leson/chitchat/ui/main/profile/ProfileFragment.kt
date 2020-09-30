@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import dagger.android.DispatchingAndroidInjector
-import kotlinx.android.synthetic.main.activity_update.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import tech.leson.chitchat.BR
 import tech.leson.chitchat.R
@@ -16,7 +15,7 @@ import tech.leson.chitchat.ui.base.BaseFragment
 import tech.leson.chitchat.ui.login.LoginActivity
 import javax.inject.Inject
 
-class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileNavigator, ProfileViewModel>(),
+class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileNavigator, MyProfileViewModel>(),
     ProfileNavigator, CompoundButton.OnCheckedChangeListener {
 
     companion object {
@@ -38,12 +37,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileNavigator, P
         get() = BR.viewModel
     override val layoutId: Int
         get() = R.layout.fragment_profile
-    override val viewModel: ProfileViewModel
+    override val viewModel: MyProfileViewModel
         get() = factory.let {
             ViewModelProvider(
                 this,
                 it
-            ).get(ProfileViewModel::class.java)
+            ).get(MyProfileViewModel::class.java)
         }
 
     override fun init() {

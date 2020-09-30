@@ -3,8 +3,6 @@ package tech.leson.chitchat.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.transition.Explode
-import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -55,15 +53,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginNavigator, LoginVi
         viewModel.setNavigator(this)
     }
 
-    override fun addAnimTransition() {
-        with(window) {
-            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-            enterTransition = Explode()
-        }
-    }
-
     override fun init() {
-        imvBtnLogin.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_left_to_right_arrow))
+        imvBtnLogin.startAnimation(AnimationUtils.loadAnimation(this,
+            R.anim.anim_left_to_right_arrow))
     }
 
     override fun login() {

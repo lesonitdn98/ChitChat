@@ -3,9 +3,7 @@ package tech.leson.chitchat.ui.update
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.transition.Explode
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -80,13 +78,6 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
             ).get(UpdateViewModel::class.java)
         }
 
-    override fun addAnimTransition() {
-        with(window) {
-            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-            enterTransition = Explode()
-        }
-    }
-
     override fun init() {
         if (NetworkUtils.isNetworkConnected(this)) {
             viewModel.getInfoUser()
@@ -146,7 +137,7 @@ class UpdateActivity : BaseActivity<ActivityUpdateBinding, UpdateNavigator, Upda
     }
 
     override fun onAvatarDialog() {
-        val avatarDialog  = AvatarDialog.getInstance()
+        val avatarDialog = AvatarDialog.getInstance()
         avatarDialog.avatar = userUpdate.avatar
         if (supportFragmentManager.findFragmentByTag("Avatar") == null) {
             avatarDialog.show(supportFragmentManager, "Avatar")

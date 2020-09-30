@@ -9,9 +9,10 @@ import tech.leson.chitchat.ui.main.contact.ContactViewModel
 import tech.leson.chitchat.ui.main.dialog.UpdateDialogViewModel
 import tech.leson.chitchat.ui.main.group.GroupViewModel
 import tech.leson.chitchat.ui.main.home.HomeViewModel
-import tech.leson.chitchat.ui.main.profile.ProfileViewModel
+import tech.leson.chitchat.ui.main.profile.MyProfileViewModel
 import tech.leson.chitchat.ui.main.qrcode.QRViewModel
 import tech.leson.chitchat.ui.password.PasswordViewModel
+import tech.leson.chitchat.ui.profile.ProfileViewModel
 import tech.leson.chitchat.ui.register.RegisterViewModel
 import tech.leson.chitchat.ui.search.SearchViewModel
 import tech.leson.chitchat.ui.splash.SplashViewModel
@@ -26,7 +27,7 @@ import javax.inject.Singleton
 @Singleton
 class ViewModelProviderFactory @Inject constructor(
     dataManager: DataManager,
-    schedulerProvider: SchedulerProvider
+    schedulerProvider: SchedulerProvider,
 ) : ViewModelProvider.NewInstanceFactory() {
 
     private val mDataManager: DataManager = dataManager
@@ -61,8 +62,8 @@ class ViewModelProviderFactory @Inject constructor(
             modelClass.isAssignableFrom(SearchViewModel::class.java) -> {
                 SearchViewModel(mDataManager, mSchedulerProvider) as T
             }
-            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
-                ProfileViewModel(mDataManager, mSchedulerProvider) as T
+            modelClass.isAssignableFrom(MyProfileViewModel::class.java) -> {
+                MyProfileViewModel(mDataManager, mSchedulerProvider) as T
             }
             modelClass.isAssignableFrom(UpdateViewModel::class.java) -> {
                 UpdateViewModel(mDataManager, mSchedulerProvider) as T
@@ -78,6 +79,9 @@ class ViewModelProviderFactory @Inject constructor(
             }
             modelClass.isAssignableFrom(PasswordViewModel::class.java) -> {
                 PasswordViewModel(mDataManager, mSchedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(mDataManager, mSchedulerProvider) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

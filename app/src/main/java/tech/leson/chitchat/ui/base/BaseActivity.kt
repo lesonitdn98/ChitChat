@@ -4,7 +4,9 @@ import android.annotation.TargetApi
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.transition.Explode
 import android.view.View
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -30,8 +32,6 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
 
     abstract val viewModel: V
 
-    abstract fun addAnimTransition()
-
     abstract fun init()
 
     @Inject
@@ -52,6 +52,13 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
 
     open fun getViewDataBinding(): T {
         return mViewDataBinding
+    }
+
+    private fun addAnimTransition() {
+        with(window) {
+            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+            enterTransition = Explode()
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -100,13 +107,5 @@ abstract class BaseActivity<T : ViewDataBinding, N, V : BaseViewModel<N>> : AppC
         mViewDataBinding.setVariable(bindingVariable, viewModel)
         mViewDataBinding.lifecycleOwner = this
         mViewDataBinding.executePendingBindings()
-    }
-
-    fun showLoading() {
-        TODO("Not yet implemented")
-    }
-
-    fun hideLoading() {
-        TODO("Not yet implemented")
     }
 }

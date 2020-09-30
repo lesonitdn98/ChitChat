@@ -4,9 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.transition.Explode
 import android.view.View
-import android.view.Window
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -200,13 +198,6 @@ class MainActivity :
 
     override fun androidInjector(): DispatchingAndroidInjector<Any>? {
         return dispatchingAndroidInjector
-    }
-
-    override fun addAnimTransition() {
-        with(window) {
-            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-            enterTransition = Explode()
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

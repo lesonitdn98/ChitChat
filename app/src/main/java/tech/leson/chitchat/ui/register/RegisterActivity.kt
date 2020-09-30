@@ -3,8 +3,6 @@ package tech.leson.chitchat.ui.register
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.transition.Explode
-import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -57,13 +55,6 @@ class RegisterActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.setNavigator(this)
-    }
-
-    override fun addAnimTransition() {
-        with(window) {
-            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-            enterTransition = Explode()
-        }
     }
 
     override fun init() {

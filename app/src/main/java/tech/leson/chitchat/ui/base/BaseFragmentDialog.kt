@@ -79,9 +79,4 @@ abstract class BaseFragmentDialog<T : ViewDataBinding, N, V : BaseViewModel<N>> 
     private fun performDependencyInjection() {
         AndroidSupportInjection.inject(this)
     }
-
-    interface Callback {
-        fun onFragmentAttached()
-        fun onFragmentDetached(tag: String?)
-    }
 }
